@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Random;
 
 import mincra.magicrod.api.MagicApi;
+import mincra.magicrod.api.MagicApi.MagicJob;
 import mincra.magicrod.database.DatabaseManager;
-import mincra.magicrod.database.DatabaseManager.MagicJob;
 import mincra.magicrod.item.MagicWeapon;
 import mincra.magicrod.version.Version;
 

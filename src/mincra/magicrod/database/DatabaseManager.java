@@ -32,7 +32,6 @@ public class DatabaseManager extends MagicApi{
 	final public static String magicChestInventoryTitle = ChatColor.DARK_AQUA+""+ChatColor.BOLD+"魔法専用チェスト";
 	final public static String giftBoxInventoryTitle = ChatColor.LIGHT_PURPLE+""+ChatColor.BOLD+"ギフトボックス(受け取り専用)";
 	static boolean use;
-	public static enum MagicJob {PRIEST,MAGICIAN,KNIGHT,ARCHER};
 
 	public DatabaseManager(){
 		use = Magic.config.getBoolean("skill.use");
@@ -445,18 +444,9 @@ public class DatabaseManager extends MagicApi{
 			stats = conn.createStatement();
 			ResultSet rs = stats.executeQuery("SELECT job FROM magic_info WHERE id = '"+user_id+"'");
 			if(rs.next()){
-				switch(rs.getInt(1)){
-					case 1:
-						return MagicJob.KNIGHT;
-					case 2:
-						return MagicJob.PRIEST;
-					case 3:
-						return MagicJob.MAGICIAN;
-					default:
-						return null;
-				}
+				return getMagicJob(rs.getInt(1));
 			}else{
-				return null;
+				return MagicJob.NONE;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -469,7 +459,7 @@ public class DatabaseManager extends MagicApi{
 				e1.printStackTrace();
 			}
 		}
-		return null;
+    	return MagicJob.NONE;
     }
 
     public static int getJobNumber(int user_id){

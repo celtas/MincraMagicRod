@@ -1,6 +1,7 @@
 package mincra.magicrod.api;
 
 
+import mincra.magicrod.api.MagicApi.MagicJob;
 import mincra.magicrod.database.ConnectionManager;
 import mincra.magicrod.database.DatabaseManager;
 import mincra.magicrod.item.MagicItem;
@@ -15,6 +16,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class MagicApi {
+	public static enum MagicJob {PRIEST,MAGICIAN,KNIGHT,ARCHER, NONE};
+	
 	public static String getMagicType(ItemStack item){
 		if(item!=null){
 			if(item.getItemMeta().hasLore()){
@@ -193,16 +196,28 @@ public class MagicApi {
 		}
 		return -1;
 	}
-	public static int getMagicJob(ItemStack item){
+	public static MagicJob getMagicJob(ItemStack item){
 		if(isMagicMaterial(item)){ 
 			String lore = item.getItemMeta().getLore().get(4);
 			lore = ChatColor.stripColor(lore);
 			int num = lore.indexOf("+");
 			if(num!=-1){
-				return Integer.valueOf(lore.substring(0, num));
+				return getMagicJob(Integer.valueOf(lore.substring(0, num)));
 			}
 		}
-		return -1;
+		return MagicJob.NONE;
+	}
+	public static MagicJob getMagicJob(int number){
+		switch(number){
+			case 1:
+				return MagicJob.KNIGHT;
+			case 2:
+				return MagicJob.PRIEST;
+			case 3:
+				return MagicJob.MAGICIAN;
+			default:
+				return MagicJob.NONE;
+		}
 	}
 
 	public static ItemStack getMaterial(int material_id){
