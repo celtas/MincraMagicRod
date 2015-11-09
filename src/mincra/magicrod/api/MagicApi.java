@@ -1,6 +1,8 @@
 package mincra.magicrod.api;
 
 
+import mincra.magicrod.database.ConnectionManager;
+import mincra.magicrod.database.DatabaseManager;
 import mincra.magicrod.item.MagicItem;
 import mincra.magicrod.item.MagicMaterial;
 import mincra.magicrod.item.MagicRod;
@@ -9,6 +11,7 @@ import mincra.magicrod.util.Util;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class MagicApi {
@@ -186,6 +189,17 @@ public class MagicApi {
 							return Integer.valueOf(lore.substring(num+1));
 					}
 				}
+			}
+		}
+		return -1;
+	}
+	public static int getMaterialJob(ItemStack item){
+		if(isMagicMaterial(item)){ 
+			String lore = item.getItemMeta().getLore().get(4);
+			lore = ChatColor.stripColor(lore);
+			int num = lore.indexOf("+");
+			if(num!=-1){
+				return Integer.valueOf(lore.substring(0, num));
 			}
 		}
 		return -1;
