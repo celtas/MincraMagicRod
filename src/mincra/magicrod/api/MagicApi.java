@@ -193,7 +193,7 @@ public class MagicApi {
 		}
 		return -1;
 	}
-	public static int getMaterialJob(ItemStack item){
+	public static int getMagicJob(ItemStack item){
 		if(isMagicMaterial(item)){ 
 			String lore = item.getItemMeta().getLore().get(4);
 			lore = ChatColor.stripColor(lore);
