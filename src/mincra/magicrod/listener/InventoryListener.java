@@ -71,6 +71,10 @@ public class InventoryListener implements Listener{
 						event.setCancelled(true);
 						player.sendMessage(ChatColor.AQUA+"魔法マテリアルを選択して下さい.");
 						return;
+					}else if(DatabaseManager.getMagicJob(DatabaseManager.getUserId(player.getUniqueId())) != MagicApi.getMagicJob(event.getOldCursor())){
+						event.setCancelled(true);
+						player.sendMessage(ChatColor.AQUA+"魔法を選択して下さい.");
+						return;
 					}
 				}
 			}
@@ -217,7 +221,7 @@ public class InventoryListener implements Listener{
 		String invName = event.getInventory().getTitle();
 		if (invName.equals(DatabaseManager.magicChestInventoryTitle)) {
 			int user_id = DatabaseManager.getUserId(event.getPlayer().getUniqueId());
-			if(user_id == -1) 
+			if(user_id == -1)
 				return;
 			DatabaseManager.saveMagicChestInventory( event.getInventory(), user_id);
 		}else if (invName.equals(DatabaseManager.skillInventoryTitle)) {
