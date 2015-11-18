@@ -27,32 +27,24 @@ public class InventoryListener implements Listener{
 	}
 	@EventHandler
 	public void onInventoryDragEvent(InventoryDragEvent event) {
-		//player.sendMessage("DragType:"+event.getType().toString());
-		//player.sendMessage("Cursor:"+event.getCursor().getType().toString());
-		//player.sendMessage("OldCursor:"+event.getOldCursor().getType());
 		Inventory inventory = event.getInventory();
-		//for(int slot:slots){
-		//	player.sendMessage("slot:"+slot);
-		//}
 		if(inventory.getName().equals(DatabaseManager.magicChestInventoryTitle)) {
 			Player player = (Player) event.getWhoClicked();
 			Set<Integer> slots = event.getRawSlots();
-			if(event.getType() == DragType.EVEN){
-				if(event.getRawSlots().size()==0){
+			
+			if(event.getType() == DragType.EVEN && event.getRawSlots().size()==0){
+				event.setCancelled(true);
+				player.sendMessage(ChatColor.AQUA+"ドラッグは使用できません.");
+				return;
+			}
+			for(int slot:slots){
+				if(slot < 54 && !MagicApi.isMagic(event.getOldCursor())){
 					event.setCancelled(true);
-					player.sendMessage(ChatColor.AQUA+"ドラッグは使用できません.");
+					player.sendMessage(ChatColor.AQUA+"魔法を選択して下さい.");
 					return;
 				}
 			}
-			for(int slot:slots){
-				if(slot < 54){
-					if(!MagicApi.isMagic(event.getOldCursor())){
-						event.setCancelled(true);
-						player.sendMessage(ChatColor.AQUA+"魔法を選択して下さい.");
-						return;
-					}
-				}
-			}
+			
 			int user_id = DatabaseManager.getUserId(player.getUniqueId());
 			if(user_id == -1)
 				return;
@@ -60,6 +52,7 @@ public class InventoryListener implements Listener{
 		}else if(inventory.getName().equals(DatabaseManager.skillInventoryTitle)) {
 			Player player = (Player) event.getWhoClicked();
 			Set<Integer> slots = event.getRawSlots();
+			
 			if(event.getType() == DragType.EVEN){
 				event.setCancelled(true);
 				player.sendMessage(ChatColor.AQUA+"ドラッグは使用できません.");
@@ -78,6 +71,7 @@ public class InventoryListener implements Listener{
 					}
 				}
 			}
+			
 			int user_id = DatabaseManager.getUserId(player.getUniqueId());
 			if(user_id == -1) 
 				return;
@@ -85,6 +79,7 @@ public class InventoryListener implements Listener{
 		}else if(inventory.getName().equals(DatabaseManager.giftBoxInventoryTitle)) {
 			Player player = (Player) event.getWhoClicked();
 			Set<Integer> slots = event.getRawSlots();
+			
 			if(event.getType() == DragType.EVEN){
 				event.setCancelled(true);
 				player.sendMessage(ChatColor.AQUA+"ドラッグは使用できません.");
@@ -96,6 +91,7 @@ public class InventoryListener implements Listener{
 					return;
 				}
 			}
+			
 			int user_id = DatabaseManager.getUserId(player.getUniqueId());
 			if(user_id == -1) 
 				return;
