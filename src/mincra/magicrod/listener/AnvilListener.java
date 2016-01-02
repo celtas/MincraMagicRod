@@ -25,9 +25,12 @@ public class AnvilListener implements Listener{
 	    				lore = ChatColor.stripColor(lore);
 	    				int num = lore.indexOf(":");
 	    				if(num!=-1){
+	    					Player player;
 		    				switch(lore.substring(0, num)){
 		    					case"魔法武器番号":
-		    						Player player = ((Player)e.getWhoClicked());
+		    					case"魔法アイテム番号":
+		    					case"ROD番号":
+		    						player = ((Player)e.getWhoClicked());
 		    						player.sendMessage(ChatColor.YELLOW+""+ChatColor.BOLD+"魔法の修理はできません.");
 		    						e.setCancelled(true);
 		    						break;

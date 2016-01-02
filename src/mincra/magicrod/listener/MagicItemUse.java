@@ -77,7 +77,7 @@ public class MagicItemUse extends Skill implements Listener {
 		event.getPlayer().getItemInHand().hasItemMeta()&&
 		event.getPlayer().getItemInHand().getItemMeta().hasLore()){
 			Player player=event.getPlayer();
-			ItemStack item=event.getPlayer().getItemInHand();
+			ItemStack item = player.getItemInHand();
 			String lore = item.getItemMeta().getLore().get(0);
 			lore = ChatColor.stripColor(lore);
 			int num = lore.indexOf(":");
@@ -444,12 +444,18 @@ public class MagicItemUse extends Skill implements Listener {
 							}
 							break;
 						case "6":
-							player.sendMessage(ChatColor.GREEN+""+ChatColor.BOLD+"魔法草を使用しました.MPが100回復しました.");
-							player.playSound(player.getLocation(), Sound.EAT, 1, 1);
-							player.giveExp(100);
-							ItemStack is = MagicItem.magicWeed;
-	    					is.setAmount(1);
-	    					player.getInventory().removeItem(is);
+							if(player.getItemInHand().equals(MagicItem.magicWeed)){
+								if(player.getLevel() <= 50){
+									player.sendMessage(ChatColor.GREEN+""+ChatColor.BOLD+"魔法草を使用しました.MPが100回復しました.");
+									player.playSound(player.getLocation(), Sound.EAT, 1, 1);
+									player.giveExp(100);
+								}else{
+									player.sendMessage(ChatColor.GREEN+""+ChatColor.BOLD+"Orrrrrrrr.....ゲホッ...");
+								}
+								ItemStack is = MagicItem.magicWeed;
+		    					is.setAmount(1);
+		    					player.getInventory().removeItem(is);
+							}
 							break;
 						default:
 							break;
