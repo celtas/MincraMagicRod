@@ -176,7 +176,7 @@ public class Effect implements EffectInterface {
 			y=y+0.0360F;
 		}
 	    for(Player player : loc.getWorld().getPlayers()) {
-	    	if(loc.distance(player.getLocation())<8){
+	    	if(loc.getWorld()==player.getWorld()&&loc.distance(player.getLocation())<8){
 	    		for(PacketPlayOutWorldParticles particle:particlelist){
 	    			((CraftPlayer) player).getHandle().playerConnection.sendPacket(particle);
 	    		}
@@ -237,7 +237,7 @@ public class Effect implements EffectInterface {
 			particlelist.add(new PacketPlayOutWorldParticles(enumparticle,true,(float) (loc.getX()+i*kakeru*Math.cos(Math.toRadians(yaw))),(float) (loc.getY()-3.077*i+1),(float) (loc.getZ()+i*kakeru*Math.sin(Math.toRadians(yaw))),0,0,0,0,1));
 		}
         for(Player player : loc.getWorld().getPlayers()) {
-        	if(loc.distance(player.getLocation())<8){
+        	if(loc.getWorld()==player.getWorld()&&loc.distance(player.getLocation())<8){
         		for(PacketPlayOutWorldParticles particle:particlelist){
         			((CraftPlayer) player).getHandle().playerConnection.sendPacket(particle);
         		}
@@ -291,7 +291,7 @@ public class Effect implements EffectInterface {
 		                0,
 		                100));
             for(Player player : loc.getWorld().getPlayers()) {
-            	if(loc.distance(player.getLocation())<32){
+            	if(loc.getWorld()==player.getWorld()&&loc.distance(player.getLocation())<32){
             		for(PacketPlayOutWorldParticles particle:particlelist){
             			((CraftPlayer) player).getHandle().playerConnection.sendPacket(particle);
             		}
