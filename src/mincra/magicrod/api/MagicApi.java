@@ -1,15 +1,14 @@
 package mincra.magicrod.api;
 
 
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
-
 import mincra.magicrod.item.MagicItem;
 import mincra.magicrod.item.MagicMaterial;
 import mincra.magicrod.item.MagicRod;
 import mincra.magicrod.item.MagicWeapon;
 import mincra.magicrod.util.Util;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 public class MagicApi {
 	public static enum MagicJob {PRIEST,MAGICIAN,KNIGHT,ARCHER, NONE};

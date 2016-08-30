@@ -1,29 +1,12 @@
 package mincra.magicrod.listener;
 
-import java.util.Random;
-
 import mincra.magicrod.main.Magic;
 import mincra.magicrod.version.Version;
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Chicken;
-import org.bukkit.entity.Cow;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Fireball;
-import org.bukkit.entity.Horse;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Monster;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Projectile;
-import org.bukkit.entity.Sheep;
-import org.bukkit.entity.Snowball;
-import org.bukkit.entity.WaterMob;
-import org.bukkit.entity.Wolf;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -31,6 +14,8 @@ import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
+
+import java.util.Random;
 
 public class EntityDamageListener implements Listener {
 	public static JavaPlugin plugin;
@@ -91,7 +76,7 @@ public class EntityDamageListener implements Listener {
 			if(le instanceof Player){
 				if(le.hasMetadata("disablearrow")&&le.getMetadata("disablearrow").get(0).asBoolean()){
 						Player player = (Player) le;
-						player.playSound(player.getLocation(), Sound.ZOMBIE_INFECT, 0.1f, 1f);
+						player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 0.1f, 1f);
 						Version.particle(e.getDamager().getLocation(), "SPELL_INSTANT", 0.1f, 0.1f, 0.1f, 1, 8);
 						e.setCancelled(true);
 						return;
@@ -139,7 +124,7 @@ public class EntityDamageListener implements Listener {
 	private void blizard(final LivingEntity le){
 		//大氷樹の効果のついた矢
 		{
-			Version.playSound(le.getLocation(), Sound.PORTAL_TRAVEL, 0.1F, 10F);
+			Version.playSound(le.getLocation(), Sound.BLOCK_PORTAL_TRAVEL, 0.1F, 10F);
 			le.setVelocity(new Vector(0,0,0));
 			final Location loc2=le.getLocation().add(-2,0,-2);
 			//Version.playeffect2(le,"fireworksSpark");

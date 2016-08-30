@@ -1,15 +1,14 @@
 package mincra.magicrod.rod;
 
-import java.util.List;
-
 import mincra.magicrod.version.Version;
-
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Minecart;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
+
+import java.util.List;
 
 public class MineCart_1 extends BukkitRunnable{
 Player player;

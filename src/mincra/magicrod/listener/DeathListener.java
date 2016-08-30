@@ -1,12 +1,9 @@
 package mincra.magicrod.listener;
 
-import java.util.HashMap;
-
 import mincra.magicrod.bar.Bar;
 import mincra.magicrod.item.MagicItem;
 import mincra.magicrod.util.Util;
 import mincra.magicrod.version.Version;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -24,6 +21,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.inventivetalent.bossbar.BossBarAPI;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 
 
 public class DeathListener implements Listener {
@@ -48,7 +46,7 @@ public class DeathListener implements Listener {
 					player.setHealth(player.getMaxHealth()/2);
 					player.setNoDamageTicks(100);
 					Version.playeffect(player.getLocation(), "FIREWORKS_SPARK");
-					Version.effect.playSound(player.getLocation(), Sound.ZOMBIE_INFECT, 1F, 1F);
+					Version.effect.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 1F, 1F);
 					player.sendMessage(ChatColor.GRAY+"リザレクションにより復活しました.");
 					resurrectionPlayers.remove(player.getName());
 				}else{
@@ -61,7 +59,7 @@ public class DeathListener implements Listener {
 	                        player.setHealth(player.getMaxHealth());
 	                        Version.playeffect(player.getLocation(), "FIREWORKS_SPARK");
 	                        player.setNoDamageTicks(100);
-	                        Version.effect.playSound(player.getLocation(), Sound.ZOMBIE_INFECT, 1F, 1F);
+	                        Version.effect.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 1F, 1F);
 	                        player.sendMessage(ChatColor.GRAY+"フェニックスの尾を使用しました。");
 	                        BossBarAPI.removeBar(player);
 	                        new Bar(player,"["+MagicItem.phoenixDown.getItemMeta().getDisplayName()+ChatColor.RESET+"]クールタイム",5);
@@ -92,7 +90,7 @@ public class DeathListener implements Listener {
     					player.setHealth(player.getMaxHealth()/2);
     					player.setNoDamageTicks(100);
     					Version.playeffect(player.getLocation(), "FIREWORKS_SPARK");
-    					Version.effect.playSound(player.getLocation(), Sound.ZOMBIE_INFECT, 1F, 1F);
+    					Version.effect.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 1F, 1F);
     					player.sendMessage(ChatColor.GRAY+"リザレクションにより復活しました.");
     					resurrectionPlayers.remove(player.getName());
     					return;
@@ -106,7 +104,7 @@ public class DeathListener implements Listener {
 	                        player.setHealth(player.getMaxHealth());
 	                        Version.playeffect(player.getLocation(), "FIREWORKS_SPARK");
 	                        player.setNoDamageTicks(100);
-	                        Version.effect.playSound(player.getLocation(), Sound.ZOMBIE_INFECT, 1F, 1F);
+	                        Version.effect.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 1F, 1F);
 	                        player.sendMessage(ChatColor.GRAY+"フェニックスの尾を使用しました。");
 	                        BossBarAPI.removeBar(player);
 	                        new Bar(player,"["+MagicItem.phoenixDown.getItemMeta().getDisplayName()+ChatColor.RESET+"]クールタイム",5);
@@ -133,7 +131,7 @@ public class DeathListener implements Listener {
                         player.setHealth(player.getMaxHealth());
                         Version.playeffect(player.getLocation(), "FIREWORKS_SPARK");
                         player.setNoDamageTicks(100);
-                        Version.effect.playSound(player.getLocation(), Sound.ZOMBIE_INFECT, 1F, 1F);
+                        Version.effect.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 1F, 1F);
                         player.sendMessage(ChatColor.GRAY+"フェニックスの尾を使用しました。");
                         BossBarAPI.removeBar(player);
                         new Bar(player,"["+MagicItem.phoenixDown.getItemMeta().getDisplayName()+ChatColor.RESET+"]クールタイム",5);

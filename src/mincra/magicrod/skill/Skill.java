@@ -1,38 +1,26 @@
 package mincra.magicrod.skill;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-
-import mincra.magicrod.bar.Bar;
 import mincra.magicrod.item.MagicItem;
 import mincra.magicrod.listener.DeathListener;
 import mincra.magicrod.main.Magic;
-import mincra.magicrod.rod.ExpRod;
 import mincra.magicrod.version.Version;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Monster;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Skeleton;
-import org.bukkit.entity.WaterMob;
-import org.bukkit.entity.Zombie;
+import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
+
+import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Random;
+import java.util.Set;
 
 public class Skill{
 	protected static HashMap<String,Timestamp> boostPlayers = new HashMap<String,Timestamp>();
@@ -53,7 +41,7 @@ public class Skill{
 	}
 	protected void boost(final Player player){
 		player.setMaxHealth(60);
-		player.playSound(player.getLocation(), Sound.LEVEL_UP, 1F, 1F);
+		player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1F, 1F);
 		final Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		boostPlayers.put(player.getName(), timestamp);
 		new BukkitRunnable(){
@@ -192,8 +180,8 @@ public class Skill{
 		Vector nockback = player.getLocation().getDirection();
 		for(Entity en:player.getNearbyEntities(x, y, z)){
 			if(en instanceof Monster){
-				player.playSound(player.getLocation(), Sound.AMBIENCE_THUNDER, 8, 1);
-				player.playSound(player.getLocation(), Sound.EXPLODE, 8, 1);
+				player.playSound(player.getLocation(), Sound.ENTITY_LIGHTNING_THUNDER, 8, 1);
+				player.playSound(player.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 8, 1);
 				en.getLocation().getWorld().strikeLightningEffect(en.getLocation());
 				((Monster) en).damage(8D);
 				en.setVelocity(nockback);
@@ -211,7 +199,7 @@ public class Skill{
 		int cnt = 0;
 		for(final Entity le:player.getNearbyEntities(x, y, z)){
 			if(le instanceof Monster||le instanceof WaterMob){
-				Version.playSound(player.getLocation(),Sound.GLASS, 1.2F, 1F);
+				Version.playSound(player.getLocation(),Sound.BLOCK_GLASS_BREAK, 1.2F, 1F);
 				Vector v=new Vector(0,0,0);
 				le.setVelocity(v);
 				Location loc2=le.getLocation().add(-2,0,-2);
@@ -295,7 +283,7 @@ public class Skill{
 		}
 	}
 	protected void holyWave(Player player,int x,int y,int z,int limit){
-		player.playSound(player.getLocation(), Sound.ZOMBIE_INFECT, 1, 1);
+		player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 1, 1);
 		for(Entity en:player.getWorld().getNearbyEntities(player.getLocation(), x, y, z)){
 			int cnt = 0;
 			if(en instanceof Zombie||en instanceof Skeleton){
@@ -317,7 +305,7 @@ public class Skill{
 		new BukkitRunnable(){
 			public void run() {
 				Version.strikeLightning(loc2);
-				player.playSound(player.getLocation(), Sound.ZOMBIE_INFECT, 1, 1);
+				player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 1, 1);
 				for(Entity en:player.getWorld().getNearbyEntities(loc4, 2, 10, 2)){
 					if(en instanceof Zombie||en instanceof Skeleton){
 						((LivingEntity)en).damage(10D,player);
@@ -328,7 +316,7 @@ public class Skill{
 		new BukkitRunnable(){
 			public void run() {
 				Version.strikeLightning(loc3);
-				player.playSound(player.getLocation(), Sound.ZOMBIE_INFECT, 1, 1);
+				player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 1, 1);
 				for(Entity en:player.getWorld().getNearbyEntities(loc4, 2, 10, 2)){
 					if(en instanceof Zombie||en instanceof Skeleton){
 						((LivingEntity)en).damage(15D,player);
@@ -339,7 +327,7 @@ public class Skill{
 		new BukkitRunnable(){
 			public void run() {
 				Version.strikeLightning(loc4);
-				player.playSound(player.getLocation(), Sound.ZOMBIE_INFECT, 1, 1);
+				player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 1, 1);
 				for(Entity en:player.getWorld().getNearbyEntities(loc4, 2, 10, 2)){
 					if(en instanceof Zombie||en instanceof Skeleton){
 						((LivingEntity)en).damage(30D,player);
@@ -406,7 +394,7 @@ public class Skill{
 				if(amount%4 == 0){
 					Version.playeffect(loc,"ENCHANTMENT_TABLE");
 				}
-				player.playSound(loc, Sound.ZOMBIE_INFECT, 0.2f, 1f);
+				player.playSound(loc, Sound.ENTITY_ZOMBIE_INFECT, 0.2f, 1f);
 				amount -=2;
 				if(amount<=0)
 					this.cancel();
@@ -419,22 +407,22 @@ public class Skill{
 	protected void villagerLv1(Player player) {
 		switch(r.nextInt(4)){
 		case 0:
-			Version.playSound(player.getLocation(), Sound.VILLAGER_YES, 2f, 1f);
+			Version.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_YES, 2f, 1f);
 			break;
 		case 1:
-			Version.playSound(player.getLocation(), Sound.VILLAGER_NO, 2f, 1f);
+			Version.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 2f, 1f);
 			break;
 		case 2:
-			Version.playSound(player.getLocation(), Sound.VILLAGER_HAGGLE, 2f, 1f);
+			Version.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_TRADING, 2f, 1f);
 			break;
 		case 3:
-			Version.playSound(player.getLocation(), Sound.VILLAGER_IDLE, 2f, 1f);
+			Version.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_AMBIENT, 2f, 1f);
 			break;
 		}
 
 	}
 	protected void devideLv1(final Player player){
-		player.playSound(player.getLocation(), Sound.SHOOT_ARROW, 1, 1);
+		player.playSound(player.getLocation(), Sound.ENTITY_ARROW_SHOOT, 1, 1);
 		final Arrow originalArrow = player.getWorld().spawnArrow(player.getLocation(),player.getLocation().getDirection(), 0.6F, 12);
 		originalArrow.setShooter(player);
 		new BukkitRunnable(){
@@ -450,7 +438,7 @@ public class Skill{
 		}.runTaskTimer(plugin, 20, 2);
 	}
 	protected void chargeLv1(final Player player) {
-		player.playSound(player.getLocation(), Sound.LEVEL_UP, 1, 1);
+		player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
 		new BukkitRunnable(){
 			int count = 20;
 			@Override

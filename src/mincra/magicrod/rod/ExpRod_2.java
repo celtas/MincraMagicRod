@@ -1,7 +1,6 @@
 package mincra.magicrod.rod;
 
 import mincra.magicrod.version.Version;
-
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -17,7 +16,7 @@ Player player;
     	if(player.getLevel()<10){
     		player.setLevel(10);
     		player.setExp(0);
-    		Version.playSound(player.getLocation(),Sound.LEVEL_UP, 1F, 1F);
+    		Version.playSound(player.getLocation(),Sound.ENTITY_PLAYER_LEVELUP, 1F, 1F);
     	}
     	this.cancel();
 	}

@@ -1,12 +1,11 @@
 package mincra.magicrod.listener;
 
-import mincra.magicrod.main.Magic;
-
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.ListenerPriority;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketEvent;
+import mincra.magicrod.main.Magic;
 
 public class SoundPacketListener {
 	Magic plugin;

@@ -1,19 +1,10 @@
 package mincra.magicrod.listener;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import mincra.magicrod.bar.Bar;
 import mincra.magicrod.version.Version;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
-import org.bukkit.entity.Damageable;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Monster;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -22,6 +13,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.inventivetalent.bossbar.BossBarAPI;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class WeaponListener implements Listener{
 	private Random r = new Random();
@@ -155,7 +150,7 @@ public class WeaponListener implements Listener{
 			if(player.getFallDistance()>0.8F){
 				item.setDurability((short) (item.getDurability()+2));
 				((Damageable) entity).damage(player.getFallDistance()*5);
-				player.getWorld().playSound(player.getLocation(), Sound.ZOMBIE_METAL, 0.3F, 1.75F);
+				player.getWorld().playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 0.3F, 1.75F);
 				Version.particle(entity.getLocation().add(0, ((LivingEntity) entity).getEyeHeight(), 0),"SPELL_INSTANT", 0.02F, -0.2F, 0.02F, 1,(int) (player.getFallDistance()*30));
 				return true;
 			}
@@ -168,7 +163,7 @@ public class WeaponListener implements Listener{
 			if(player.getFallDistance()>0.8F){
 				item.setDurability((short) (item.getDurability()+2));
 				((Damageable) entity).damage(player.getFallDistance()*10);
-				player.getWorld().playSound(player.getLocation(), Sound.ZOMBIE_METAL, 1F, 1.25F);
+				player.getWorld().playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 1F, 1.25F);
 				Version.particle(entity.getLocation().add(0, ((LivingEntity) entity).getEyeHeight(), 0),"SPELL_INSTANT", 0.02F, -0.2F, 0.02F, 1,(int) (player.getFallDistance()*30));
 				return true;
 			}
@@ -199,7 +194,7 @@ public class WeaponListener implements Listener{
 		    	if(health>d.getMaxHealth())health=(int) d.getMaxHealth();
 		    	player.setHealth(health);
 		    	Version.playeffect(player.getLocation(),"VILLAGER_HAPPY");
-		    	Version.playSound(player.getLocation(),Sound.ZOMBIE_INFECT, 3F, 1F);
+		    	Version.playSound(player.getLocation(),Sound.ENTITY_ZOMBIE_INFECT, 3F, 1F);
 		    	item.setDurability((short) (item.getDurability()+1));
 		    	//((CraftWorld) player.getWorld()).getHandle().a("heart", player.getLocation().getX(), player.getLocation().getY()+2.2, player.getLocation().getZ(), 10, 0.42D, 0.42D, 0.42D, 0);
 		    	return true;

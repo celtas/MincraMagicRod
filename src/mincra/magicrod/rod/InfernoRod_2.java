@@ -1,7 +1,6 @@
 package mincra.magicrod.rod;
 
 import mincra.magicrod.listener.EntityDamageListener;
-
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;

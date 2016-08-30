@@ -1,15 +1,9 @@
 package mincra.magicrod.cmd;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import mincra.magicrod.api.MagicApi;
 import mincra.magicrod.item.MagicItem;
 import mincra.magicrod.main.Magic;
 import mincra.magicrod.version.Version;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -22,6 +16,11 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class MincraCommands extends MagicApi implements CommandExecutor {
 	private HashMap<String,Integer> cmdmap = new HashMap<String,Integer>();

@@ -1,22 +1,17 @@
 package mincra.magicrod.ai;
 
-import java.util.ArrayList;
-
 import mincra.magicrod.main.Magic;
 import mincra.magicrod.version.Version;
-
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Sound;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Monster;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
+
+import java.util.ArrayList;
 
 public class MonsterAI{
 	private Magic plugin;
@@ -40,7 +35,7 @@ public class MonsterAI{
 					}
 					if(existsplayer){
 						Version.playeffect(le.getLocation(),"FLAME");
-				    	Version.playSound(le.getLocation(),Sound.PORTAL_TRAVEL, 0.1F, 4F);
+				    	Version.playSound(le.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.1F, 4F);
 						new BukkitRunnable(){
 							int angle=0;
 							int angleInterval=10;
@@ -100,7 +95,7 @@ public class MonsterAI{
 					}
 					if(existsplayer){
 					    Version.playeffect(le.getLocation(),"VILLAGER_HAPPY");
-				    	Version.playSound(le.getLocation(),Sound.PORTAL_TRAVEL, 0.1F, 4F);
+				    	Version.playSound(le.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.1F, 4F);
 				    	int cnt = 0;
 				    	for(Entity en:le.getNearbyEntities(12, 6, 12)){
 							if(existsplayer){
@@ -146,7 +141,7 @@ public class MonsterAI{
 					    	//le.getLocation().setYaw(loc3.getYaw());
 					    	Arrow arrow=le.getWorld().spawnArrow(loc.add(v),  v, 1.5F, 12F);
 							Version.playeffect(le.getLocation(),"ENCHANTMENT_TABLE");
-							Version.playSound(le.getLocation(),Sound.GLASS, 1.5F, 2F);
+							Version.playSound(le.getLocation(),Sound.BLOCK_GLASS_BREAK, 1.5F, 2F);
 							MetadataValue arrowmetadata = new FixedMetadataValue(plugin, "1");
 							arrow.setMetadata("MagicMob", arrowmetadata);
 							break;

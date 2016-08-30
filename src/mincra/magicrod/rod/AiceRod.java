@@ -1,7 +1,6 @@
 package mincra.magicrod.rod;
 
 import mincra.magicrod.version.Version;
-
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -31,7 +30,7 @@ public class AiceRod extends BukkitRunnable{
 		snow.setVelocity(vec);
 		MetadataValue metadata = new FixedMetadataValue(plugin, "aice");
 		snow.setMetadata("lod", metadata);
-    	Version.playSound(player.getLocation(),Sound.GLASS, 0.5F, 1F);
+    	Version.playSound(player.getLocation(),Sound.BLOCK_GLASS_BREAK, 0.5F, 1F);
     	new BukkitRunnable(){
 			@Override
 			public void run() {

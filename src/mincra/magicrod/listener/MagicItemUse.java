@@ -1,49 +1,13 @@
 package mincra.magicrod.listener;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import mincra.magicrod.bar.Bar;
 import mincra.magicrod.database.DatabaseManager;
 import mincra.magicrod.item.MagicItem;
 import mincra.magicrod.main.Magic;
-import mincra.magicrod.rod.AiceRod;
-import mincra.magicrod.rod.AiceRod_3;
-import mincra.magicrod.rod.AiceRod_4;
-import mincra.magicrod.rod.Barrier;
-import mincra.magicrod.rod.Barrier_2;
-import mincra.magicrod.rod.Barrier_3;
-import mincra.magicrod.rod.DestroyRod;
-import mincra.magicrod.rod.DestroyRod_2;
-import mincra.magicrod.rod.DestroyRod_3;
-import mincra.magicrod.rod.DestroyRod_4;
-import mincra.magicrod.rod.DestroyRod_5;
-import mincra.magicrod.rod.ExpRod;
-import mincra.magicrod.rod.ExpRod_2;
-import mincra.magicrod.rod.ExpRod_3;
-import mincra.magicrod.rod.InfernoRod;
-import mincra.magicrod.rod.InfernoRod_2;
-import mincra.magicrod.rod.InfernoRod_3;
-import mincra.magicrod.rod.JampRod;
-import mincra.magicrod.rod.JampRod_2;
-import mincra.magicrod.rod.JampRod_3;
-import mincra.magicrod.rod.Lightning;
-import mincra.magicrod.rod.MineCart_1;
-import mincra.magicrod.rod.MoveRod;
-import mincra.magicrod.rod.MoveRod_2;
-import mincra.magicrod.rod.MoveRod_3;
-import mincra.magicrod.rod.QureRod;
-import mincra.magicrod.rod.QureRod_2;
-import mincra.magicrod.rod.QureRod_3;
-import mincra.magicrod.rod.Spawn_Rod;
-import mincra.magicrod.rod.Spawn_Rod_2;
-import mincra.magicrod.rod.Spawn_Rod_3;
-import mincra.magicrod.rod.Water_Rod;
+import mincra.magicrod.rod.*;
 import mincra.magicrod.skill.Skill;
 import mincra.magicrod.util.Util;
 import mincra.magicrod.version.Version;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -62,6 +26,10 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import org.inventivetalent.bossbar.BossBarAPI;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class MagicItemUse extends Skill implements Listener {
 	public static Magic plugin;
@@ -447,7 +415,7 @@ public class MagicItemUse extends Skill implements Listener {
 							if(player.getItemInHand().equals(MagicItem.magicWeed)){
 								if(player.getLevel() <= 50){
 									player.sendMessage(ChatColor.GREEN+""+ChatColor.BOLD+"魔法草を使用しました.MPが100回復しました.");
-									player.playSound(player.getLocation(), Sound.EAT, 1, 1);
+									player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BURP, 1, 1);
 									player.giveExp(100);
 								}else{
 									player.sendMessage(ChatColor.GREEN+""+ChatColor.BOLD+"Orrrrrrrr.....ゲホッ...");
@@ -563,7 +531,7 @@ public class MagicItemUse extends Skill implements Listener {
 		Util.debug(player.getName()+"がバーストを発動");
 		if(cooltime>0)
 			new Bar(player,"["+ChatColor.WHITE+""+ChatColor.BOLD+"バースト"+ChatColor.RESET+"]クールタイム",cooltime);
-		player.playSound(player.getLocation(), Sound.ZOMBIE_INFECT, 1, 1);
+		player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 1, 1);
 		player.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
 		player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 6000, 1));
 	}
@@ -571,7 +539,7 @@ public class MagicItemUse extends Skill implements Listener {
 		Util.debug(player.getName()+"がプロテクトを発動");
 		if(cooltime>0)
 			new Bar(player,"["+ChatColor.WHITE+""+ChatColor.BOLD+"プロテクト"+ChatColor.RESET+"]クールタイム",cooltime);
-		player.playSound(player.getLocation(), Sound.ZOMBIE_INFECT, 1, 1);
+		player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 1, 1);
 		player.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
 		player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 6000, 1));
 	}
@@ -581,7 +549,7 @@ public class MagicItemUse extends Skill implements Listener {
 			new Bar(player,"["+ChatColor.AQUA+""+ChatColor.BOLD+"青水晶"+ChatColor.RESET+"]クールタイム",cooltime);
 		player.setFallDistance(-6F);
     	player.setVelocity(player.getVelocity().add(new Vector(0,1.2f,0)));
-    	player.playSound(player.getLocation(), Sound.ENDERDRAGON_WINGS, 1f, 1f);
+    	player.playSound(player.getLocation(), Sound.ENTITY_ENDERMEN_TELEPORT, 1f, 1f);
 	}
 	private void jumpLv2(Player player,float cooltime) {
 		Util.debug(player.getName()+"が蒼水晶を発動");
@@ -589,7 +557,7 @@ public class MagicItemUse extends Skill implements Listener {
 			new Bar(player,"["+ChatColor.BLUE+""+ChatColor.BOLD+"蒼水晶"+ChatColor.RESET+"]クールタイム",cooltime);
 		player.setFallDistance(-12F);
 		player.setVelocity(player.getVelocity().add(new Vector(0,2.4f,0)));
-		player.playSound(player.getLocation(), Sound.ENDERDRAGON_WINGS, 1f, 1f);
+		player.playSound(player.getLocation(), Sound.ENTITY_ENDERMEN_TELEPORT, 1f, 1f);
 	}
 	private void walkSpeedLv1(Player player,float cooltime) {
 		Util.debug(player.getName()+"が緑水晶を発動");
@@ -598,10 +566,10 @@ public class MagicItemUse extends Skill implements Listener {
 		player.removePotionEffect(PotionEffectType.SPEED);
 		if(!player.getWorld().getName().equalsIgnoreCase("world")){
 	    	player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 15*20, 15));
-	    	player.playSound(player.getLocation(), Sound.WITHER_SHOOT, 0.3f, 1f);
+	    	player.playSound(player.getLocation(), Sound.ENTITY_WITHER_SHOOT, 0.3f, 1f);
 		}else{
 			player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 15*20, 2));
-	    	player.playSound(player.getLocation(), Sound.WITHER_SHOOT, 1f, 1f);
+	    	player.playSound(player.getLocation(), Sound.ENTITY_WITHER_SHOOT, 1f, 1f);
 		}
 	}
 	private void walkSpeedLv2(Player player,float cooltime) {
@@ -611,10 +579,10 @@ public class MagicItemUse extends Skill implements Listener {
 		player.removePotionEffect(PotionEffectType.SPEED);
 		if(!player.getWorld().getName().equalsIgnoreCase("world")){
 	    	player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, (int) (20*cooltime), 30));
-	    	player.playSound(player.getLocation(), Sound.WITHER_SHOOT, 0.3f, 1f);
+	    	player.playSound(player.getLocation(), Sound.ENTITY_WITHER_SHOOT, 0.3f, 1f);
 		}else{
 			player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 15*20, 2));
-	    	player.playSound(player.getLocation(), Sound.WITHER_SHOOT, 1f, 1f);
+	    	player.playSound(player.getLocation(), Sound.ENTITY_WITHER_SHOOT, 1f, 1f);
 		}
 	}
 	private void healLv2(Player player,float cooltime) {
@@ -622,7 +590,7 @@ public class MagicItemUse extends Skill implements Listener {
 		if(cooltime>0)
 			new Bar(player,"["+ChatColor.GREEN+""+ChatColor.BOLD+"キュアル"+ChatColor.RESET+"]クールタイム",cooltime);
 	    Version.playeffect(player.getLocation(),"VILLAGER_HAPPY");
-    	Version.playSound(player.getLocation(),Sound.LEVEL_UP, 1F, 1.2F);
+    	Version.playSound(player.getLocation(),Sound.ENTITY_PLAYER_LEVELUP, 1F, 1.2F);
     	super.heal(player, 16, 8, 16, 5, 8);
 	}
 
@@ -631,7 +599,7 @@ public class MagicItemUse extends Skill implements Listener {
 		if(cooltime>0)
 			new Bar(player,"["+ChatColor.GREEN+""+ChatColor.BOLD+"キュア"+ChatColor.RESET+"]クールタイム",cooltime);
 	    Version.playeffect(player.getLocation(),"VILLAGER_HAPPY");
-    	Version.playSound(player.getLocation(),Sound.LEVEL_UP, 1F, 1.2F);
+    	Version.playSound(player.getLocation(),Sound.ENTITY_PLAYER_LEVELUP, 1F, 1.2F);
     	super.heal(player, 16, 8, 16, 5, 4);
 	}
 	private void thunderLv1(Player player,float cooltime) {
@@ -646,7 +614,7 @@ public class MagicItemUse extends Skill implements Listener {
 		if(cooltime>0)
 			new Bar(player,"["+ChatColor.RED+""+ChatColor.BOLD+"挑発Lv2"+ChatColor.RESET+"]クールタイム",cooltime);
 	    Version.playeffect(player.getLocation(),"SPELL_INSTANT");
-	    Version.playSound(player.getLocation(),Sound.ZOMBIE_INFECT, 10F, 2F);
+	    Version.playSound(player.getLocation(),Sound.ENTITY_ZOMBIE_INFECT, 10F, 2F);
 	    super.disableArrow(player,600);
     	super.taunt(player, 32, 24, 32, 24);
 	}
@@ -655,7 +623,7 @@ public class MagicItemUse extends Skill implements Listener {
 		if(cooltime>0)
 			new Bar(player,"["+ChatColor.RED+""+ChatColor.BOLD+"挑発Lv1"+ChatColor.RESET+"]クールタイム",cooltime);
 	    Version.playeffect(player.getLocation(),"SPELL_INSTANT");
-	    Version.playSound(player.getLocation(),Sound.ZOMBIE_INFECT, 10F, 2F);
+	    Version.playSound(player.getLocation(),Sound.ENTITY_ZOMBIE_INFECT, 10F, 2F);
     	super.taunt(player, 32, 24, 32, 12);
 	}
 	private void fireLv1(Player player,float cooltime) {
@@ -663,7 +631,7 @@ public class MagicItemUse extends Skill implements Listener {
 		if(cooltime>0)
 			new Bar(player,"["+ChatColor.RED+""+ChatColor.BOLD+"ファイア"+ChatColor.RESET+"]クールタイム",cooltime);
 	    Version.playeffect(player.getLocation(),"FLAME");
-    	Version.playSound(player.getLocation(),Sound.ZOMBIE_INFECT, 10F, 1F);
+    	Version.playSound(player.getLocation(),Sound.ENTITY_ZOMBIE_INFECT, 10F, 1F);
     	super.fire(player, 16, 8, 16, 6, 300);
 	}
 	private void blizardLv1(final Player player,float cooltime) {
@@ -671,7 +639,7 @@ public class MagicItemUse extends Skill implements Listener {
 		if(cooltime>0)
 			new Bar(player,"["+ChatColor.AQUA+""+ChatColor.BOLD+"ブリザード"+ChatColor.RESET+"]クールタイム",cooltime);
 	    Version.playeffect(player.getLocation(),"SNOWBALL");
-    	Version.playSound(player.getLocation(),Sound.GLASS, 3F, 1F);
+    	Version.playSound(player.getLocation(),Sound.BLOCK_GLASS_BREAK, 3F, 1F);
 		super.blizard(player,8,8,8,4,100);
 	}
 
@@ -685,7 +653,7 @@ public class MagicItemUse extends Skill implements Listener {
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
     		Version.playeffect(player.getLocation(),"ENCHANTMENT_TABLE");
-	    	Version.playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.1F, 4F);
+	    	Version.playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.1F, 4F);
 	    	String st2=list.get(5);
 	    	//破壊確率
 	    	Float f=Float.valueOf(st2.substring(2, 6));
@@ -699,7 +667,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1F, 1F);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1F, 1F);
 	    		player.updateInventory();
 	    	}
 	    	new ExpRod(player).runTaskLater(plugin, 40);
@@ -725,7 +693,7 @@ public class MagicItemUse extends Skill implements Listener {
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
     		Version.playeffect(player.getLocation(),"ENCHANTMENT_TABLE");
-	    	Version.playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.1F, 4F);
+	    	Version.playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.1F, 4F);
 	    	String st2=list.get(5);
 	    	//破壊確率
 	    	Float f=Float.valueOf(st2.substring(2, 6));
@@ -739,7 +707,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new ExpRod_2(player).runTaskLater(plugin, 80);
@@ -764,7 +732,7 @@ public class MagicItemUse extends Skill implements Listener {
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
     		Version.playeffect(player.getLocation(),"ENCHANTMENT_TABLE");
-	    	Version.playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.1F, 4F);
+	    	Version.playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.1F, 4F);
 	    	String st2=list.get(5);
 	    	//破壊確率
 	    	Float f=Float.valueOf(st2.substring(2, 6));
@@ -778,7 +746,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new ExpRod_3(player).runTaskLater(plugin, 0);
@@ -803,7 +771,7 @@ public class MagicItemUse extends Skill implements Listener {
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
     		Version.playeffect(player.getLocation(),"REDSTONE");
-	    	Version.playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.01F, 4F);
+	    	Version.playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.01F, 4F);
 	    	String st2=list.get(5);
 	    	//破壊確率
 	    	Float f=Float.valueOf(st2.substring(2, 6));
@@ -817,7 +785,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new JampRod(player).runTaskLater(plugin, 0);
@@ -842,7 +810,7 @@ public class MagicItemUse extends Skill implements Listener {
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
     		Version.playeffect(player.getLocation(),"CLOUD");
-	    	Version.playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.1F, 4F);
+	    	Version.playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.1F, 4F);
 	    	String st2=list.get(5);
 	    	//破壊確率
 	    	Float f=Float.valueOf(st2.substring(2, 6));
@@ -856,7 +824,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new JampRod_2(player).runTaskLater(plugin, 0);
@@ -882,7 +850,7 @@ public class MagicItemUse extends Skill implements Listener {
     		player.setLevel(player.getLevel()-hlv);
     		Version.playeffect(player.getLocation(),"CLOUD");
     		Version.playeffect(player.getLocation(),"SPELL_INSTANT");
-	    	Version.playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.1F, 4F);
+	    	Version.playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.1F, 4F);
 	    	String st2=list.get(5);
 	    	//破壊確率
 	    	Float f=Float.valueOf(st2.substring(2, 6));
@@ -896,7 +864,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new JampRod_3(player).runTaskLater(plugin, 0);
@@ -921,7 +889,7 @@ public class MagicItemUse extends Skill implements Listener {
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
     		Version.playeffect(player.getLocation(),"FLAME");
-	    	Version.playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.1F, 4F);
+	    	Version.playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.1F, 4F);
 	    	String st2=list.get(5);
 	    	//破壊確率
 	    	Float f=Float.valueOf(st2.substring(2, 6));
@@ -935,7 +903,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new InfernoRod(player).runTaskLater(plugin, 5);
@@ -960,7 +928,7 @@ public class MagicItemUse extends Skill implements Listener {
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
     		Version.playeffect(player.getLocation(),"FLAME");
-	    	Version.playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.1F, 4F);
+	    	Version.playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.1F, 4F);
 	    	String st2=list.get(5);
 	    	//破壊確率
 	    	Float f=Float.valueOf(st2.substring(2, 6));
@@ -974,7 +942,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new InfernoRod_2(player).runTaskLater(plugin, 5);
@@ -999,7 +967,7 @@ public class MagicItemUse extends Skill implements Listener {
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
     		Version.playeffect(player.getLocation(),"FLAME");
-	    	Version.playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.1F, 4F);
+	    	Version.playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.1F, 4F);
 	    	String st2=list.get(5);
 	    	//破壊確率
 	    	Float f=Float.valueOf(st2.substring(2, 6));
@@ -1013,7 +981,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new InfernoRod_3(player).runTaskLater(plugin, 5);
@@ -1034,11 +1002,11 @@ public class MagicItemUse extends Skill implements Listener {
     	list=item.getItemMeta().getLore();
     	//MP消費
     	int hlv=Integer.valueOf(list.get(4).substring(2, 3));
-    	Version.playSound(player.getLocation(),Sound.ANVIL_USE, 0.1F, 1F);
+    	Version.playSound(player.getLocation(),Sound.BLOCK_ANVIL_USE, 0.1F, 1F);
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
 	    	Version.playeffect(player.getLocation(),"VILLAGER_HAPPY");
-	    	Version.playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.01F, 10F);
+	    	Version.playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.01F, 10F);
 	    	String st2=list.get(5);
 	    	//破壊確率
 	    	Float f=Float.valueOf(st2.substring(2, 3));
@@ -1052,7 +1020,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new DestroyRod(player,player2).runTaskLater(plugin, 5);
@@ -1072,11 +1040,11 @@ public class MagicItemUse extends Skill implements Listener {
     	list=item.getItemMeta().getLore();
     	//MP消費
     	int hlv=Integer.valueOf(list.get(4).substring(2, 3));
-    	Version.playSound(player.getLocation(),Sound.ANVIL_USE, 0.1F, 1F);
+    	Version.playSound(player.getLocation(),Sound.BLOCK_ANVIL_USE, 0.1F, 1F);
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
     		Version.playeffect(player.getLocation(),"VILLAGER_HAPPY");
-	    	Version.playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.01F, 10F);
+	    	Version.playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.01F, 10F);
 	    	String st2=list.get(5);
 	    	//破壊確率
 	    	Float f=Float.valueOf(st2.substring(2, 3));
@@ -1090,7 +1058,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new DestroyRod_2(player,player2).runTaskLater(plugin, 5);
@@ -1110,11 +1078,11 @@ public class MagicItemUse extends Skill implements Listener {
 		list=item.getItemMeta().getLore();
 		//MP消費
 		int hlv=Integer.valueOf(list.get(4).substring(2, 3));
-		Version.playSound(player.getLocation(),Sound.ANVIL_USE, 0.1F, 1F);
+		Version.playSound(player.getLocation(),Sound.BLOCK_ANVIL_USE, 0.1F, 1F);
 		if(hlv==0||player.getLevel()>=hlv){
 			player.setLevel(player.getLevel()-hlv);
 			Version.playeffect(player.getLocation(),"VILLAGER_HAPPY");
-	    	Version.playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.01F, 10F);
+	    	Version.playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.01F, 10F);
 	    	String st2=list.get(5);
 	    	//破壊確率
 	    	Float f=Float.valueOf(st2.substring(2, 3));
@@ -1128,7 +1096,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new DestroyRod_3(player,player2).runTaskLater(plugin, 5);
@@ -1149,11 +1117,11 @@ public class MagicItemUse extends Skill implements Listener {
     	//MP消費
     	float hlv2=Float.valueOf(list.get(4).substring(2, 6));
     	int hlv=(int) hlv2;
-    	Version.playSound(player.getLocation(),Sound.ANVIL_USE, 0.1F, 1F);
+    	Version.playSound(player.getLocation(),Sound.BLOCK_ANVIL_USE, 0.1F, 1F);
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
     		Version.playeffect(player.getLocation(),"VILLAGER_HAPPY");
-	    	Version.playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.01F, 10F);
+	    	Version.playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.01F, 10F);
 	    	player.setFoodLevel(0);
 	    	player.setHealth(1);
 	    	String st2=list.get(5);
@@ -1169,7 +1137,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"書物が破れてしまいました。");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new DestroyRod_4(player).runTaskLater(plugin, 40);
@@ -1191,11 +1159,11 @@ public class MagicItemUse extends Skill implements Listener {
     	//MP消費
     	float hlv2=Float.valueOf(list.get(4).substring(2, 6));
     	int hlv=(int) hlv2;
-    	Version.playSound(player.getLocation(),Sound.ANVIL_USE, 0.1F, 1F);
+    	Version.playSound(player.getLocation(),Sound.BLOCK_ANVIL_USE, 0.1F, 1F);
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
     		Version.playeffect(player.getLocation(),"VILLAGER_HAPPY");
-	    	Version.playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.01F, 10F);
+	    	Version.playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.01F, 10F);
 	    	player.setFoodLevel(0);
 	    	player.setHealth(1);
 	    	String st2=list.get(5);
@@ -1212,7 +1180,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"ピッケルが壊れてしまいました。");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new DestroyRod_5(player).runTaskLater(plugin, 40);
@@ -1237,7 +1205,7 @@ public class MagicItemUse extends Skill implements Listener {
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
 	    	Version.playeffect(player.getLocation(),"VILLAGER_HAPPY");
-	    	Version.playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.01F, 10F);
+	    	Version.playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.01F, 10F);
 	    	String st2=list.get(5);
 	    	//破壊確率
 	    	Float f=Float.valueOf(st2.substring(2, 3));
@@ -1251,7 +1219,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new QureRod(player).runTaskLater(plugin, 40);
@@ -1276,7 +1244,7 @@ public class MagicItemUse extends Skill implements Listener {
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
 	    	Version.playeffect(player.getLocation(),"VILLAGER_HAPPY");
-	    	Version.playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.01F, 10F);
+	    	Version.playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.01F, 10F);
 	    	String st2=list.get(5);
 	    	//破壊確率
 	    	Float f=Float.valueOf(st2.substring(2, 3));
@@ -1290,7 +1258,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new QureRod_2(player).runTaskLater(plugin, 40);
@@ -1315,7 +1283,7 @@ public class MagicItemUse extends Skill implements Listener {
 	    	if(hlv==0||player.getLevel()>=hlv){
 	    		player.setLevel(player.getLevel()-hlv);
 		    	Version.playeffect(player.getLocation(),"VILLAGER_HAPPY");
-		    	Version.playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.01F, 10F);
+		    	Version.playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.01F, 10F);
 		    	String st2=list.get(5);
 		    	//破壊確率
 		    	Float f=Float.valueOf(st2.substring(2, 3));
@@ -1329,7 +1297,7 @@ public class MagicItemUse extends Skill implements Listener {
 						player.getInventory().removeItem(item);
 					}
 		    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-		    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+		    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 		    		player.updateInventory();
 		    	}
 		    	new QureRod_3(player).runTaskLater(plugin, 40);
@@ -1354,7 +1322,7 @@ public class MagicItemUse extends Skill implements Listener {
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
 	    	//Magicrod.playboy(player,player.getLocation(),"fireworksSpark");
-	    	//((CraftPlayer)player).playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.1F, 10F);
+	    	//((CraftPlayer)player).playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.1F, 10F);
 	    	String st2=list.get(5);
 	    	//破壊確率
 	    	Float f=Float.valueOf(st2.substring(2, 6));
@@ -1368,10 +1336,10 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
-	    	Version.playSound(player.getLocation(),Sound.WITHER_SHOOT, 0.2F, 1F);
+	    	Version.playSound(player.getLocation(),Sound.ENTITY_WITHER_SHOOT, 0.2F, 1F);
 	    	new MoveRod(player).runTaskLater(plugin, 0);
 	    	String st=list.get(3);
 	    	//クールタイム
@@ -1394,7 +1362,7 @@ public class MagicItemUse extends Skill implements Listener {
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
 	    	//Magicrod.playboy(player,player.getLocation(),"fireworksSpark");
-	    	//((CraftPlayer)player).playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.1F, 10F);
+	    	//((CraftPlayer)player).playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.1F, 10F);
 	    	String st2=list.get(5);
 	    	//破壊確率
 	    	Float f=Float.valueOf(st2.substring(2, 6));
@@ -1408,10 +1376,10 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
-	    	Version.playSound(player.getLocation(),Sound.WITHER_SHOOT, 0.2F, 1F);
+	    	Version.playSound(player.getLocation(),Sound.ENTITY_WITHER_SHOOT, 0.2F, 1F);
 	    	new MoveRod_2(player).runTaskLater(plugin, 0);
 	    	String st=list.get(3);
 	    	//クールタイム
@@ -1434,7 +1402,7 @@ public class MagicItemUse extends Skill implements Listener {
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
 	    	//Magicrod.playboy(player,player.getLocation(),"fireworksSpark");
-	    	//((CraftPlayer)player).playSound(player.getLocation(),Sound.PORTAL_TRAVEL, 0.1F, 10F);
+	    	//((CraftPlayer)player).playSound(player.getLocation(),Sound.BLOCK_PORTAL_TRAVEL, 0.1F, 10F);
 	    	String st2=list.get(5);
 	    	//破壊確率
 	    	Float f=Float.valueOf(st2.substring(2, 6));
@@ -1448,10 +1416,10 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
-	    	Version.playSound(player.getLocation(),Sound.WITHER_SHOOT, 0.2F, 1F);
+	    	Version.playSound(player.getLocation(),Sound.ENTITY_WITHER_SHOOT, 0.2F, 1F);
 	    	new MoveRod_3(player).runTaskLater(plugin, 0);
 	    	String st=list.get(3);
 	    	//クールタイム
@@ -1486,7 +1454,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new AiceRod(player,plugin).runTaskLater(plugin, 0);
@@ -1523,7 +1491,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new AiceRod(player,plugin).runTaskLater(plugin, 0);
@@ -1561,7 +1529,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"書物がっ...");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new AiceRod_3(player,plugin).runTaskLater(plugin, 0);
@@ -1599,7 +1567,7 @@ public class MagicItemUse extends Skill implements Listener {
 						player.getInventory().removeItem(item);
 					}
 		    		player.sendMessage(ChatColor.DARK_RED+"書物がっ...");
-		    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+		    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 		    		player.updateInventory();
 		    	}
 		    	new AiceRod_4(player,plugin).runTaskLater(plugin, 0);
@@ -1637,7 +1605,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new Barrier(player,player2).runTaskLater(plugin, 20);
@@ -1675,7 +1643,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new Barrier_2(player,player2).runTaskLater(plugin, 20);
@@ -1713,7 +1681,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"書物がっ...");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new Barrier_3(player).runTaskLater(plugin, 20);
@@ -1751,7 +1719,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"杖がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new Water_Rod(player).runTaskTimer(plugin,1,1);
@@ -1789,7 +1757,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"書物がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new Spawn_Rod(player,plugin).runTaskLater(plugin, 10);
@@ -1827,7 +1795,7 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"書物がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
 	    	new Spawn_Rod_2(player,plugin).runTaskLater(plugin, 20);
@@ -1865,7 +1833,7 @@ public class MagicItemUse extends Skill implements Listener {
 						player.getInventory().removeItem(item);
 					}
 		    		player.sendMessage(ChatColor.DARK_RED+"書物がっ・・・");
-		    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+		    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 		    		player.updateInventory();
 		    	}
 		    	new Spawn_Rod_3(player,plugin).runTaskLater(plugin, 40);
@@ -1903,10 +1871,10 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"書物がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
-	    	Version.playSound(player.getLocation(),Sound.WITHER_SHOOT, 0.15F, 1F);
+	    	Version.playSound(player.getLocation(),Sound.ENTITY_WITHER_SHOOT, 0.15F, 1F);
 	    	new MineCart_1(player,plugin).runTaskLater(plugin, 0);
 	    	String st=list.get(3);
 	    	//クールタイム
@@ -1942,10 +1910,10 @@ public class MagicItemUse extends Skill implements Listener {
 					player.getInventory().removeItem(item);
 				}
 	    		player.sendMessage(ChatColor.DARK_RED+"書物がっ・・・");
-	    		Version.playSound(player.getLocation(),Sound.ITEM_BREAK, 1, 1);
+	    		Version.playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK, 1, 1);
 	    		player.updateInventory();
 	    	}
-	    	Version.playSound(player.getLocation(),Sound.WITHER_SHOOT, 0.15F, 1F);
+	    	Version.playSound(player.getLocation(),Sound.ENTITY_WITHER_SHOOT, 0.15F, 1F);
 	    	new Lightning(player,plugin).runTaskLater(plugin, 0);
 	    	String st=list.get(3);
 	    	//クールタイム
@@ -1977,7 +1945,7 @@ public class MagicItemUse extends Skill implements Listener {
 	    		player.setLevel(player.getLevel()-hlv);
 		    	item.setDurability((short) (item.getDurability()+3));
 		    	player.setVelocity(new Vector(player.getVelocity().getX(),5F,player.getVelocity().getZ()));
-		    	player.getWorld().playSound(player.getLocation(),Sound.WITHER_SHOOT, 0.1F, 1F);
+		    	player.getWorld().playSound(player.getLocation(),Sound.ENTITY_WITHER_SHOOT, 0.1F, 1F);
 		    	player.setFallDistance(-25);
 		    	new BukkitRunnable(){
 		    		boolean exit = false;
@@ -2001,7 +1969,7 @@ public class MagicItemUse extends Skill implements Listener {
 							}
 						}else if(player.getVelocity().getY()<=3.6F){
 							player.setVelocity(new Vector(player.getVelocity().getX(),-5F,player.getVelocity().getZ()));
-							player.getWorld().playSound(player.getLocation(),Sound.WITHER_SHOOT, 0.1F, 1F);
+							player.getWorld().playSound(player.getLocation(),Sound.ENTITY_WITHER_SHOOT, 0.1F, 1F);
 							height = player.getLocation().getY();
 							exit = true;
 						}else{

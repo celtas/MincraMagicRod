@@ -1,7 +1,6 @@
 package mincra.magicrod.version;
 
 import mincra.magicrod.main.Magic;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;

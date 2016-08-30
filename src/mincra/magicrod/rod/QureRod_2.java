@@ -1,9 +1,6 @@
 package mincra.magicrod.rod;
 
-import java.util.List;
-
 import mincra.magicrod.version.Version;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -12,6 +9,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.List;
 
 public class QureRod_2 extends BukkitRunnable{
 Player player;
@@ -29,7 +28,7 @@ Player player;
 				if(cnt<=4){
 					cnt++;
 					Player player2=(Player)entity;
-					Version.playSound(player2.getLocation(),Sound.VILLAGER_YES, 0.3F, 1F);
+					Version.playSound(player2.getLocation(),Sound.ENTITY_VILLAGER_YES, 0.3F, 1F);
 			    	player2.addPotionEffect(new PotionEffect(PotionEffectType.HEAL,1,2));
 			    	player2.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST,200,1));
 			    	Location loc=player2.getLocation();

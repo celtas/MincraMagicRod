@@ -1,23 +1,22 @@
 package mincra.magicrod.listener;
 
-import java.util.List;
-
 import mincra.magicrod.bar.Bar;
 import mincra.magicrod.item.MagicItem;
 import mincra.magicrod.version.Version;
-
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.inventivetalent.bossbar.BossBarAPI;
+
+import java.util.List;
 
 
 public class PotionListener implements Listener {
@@ -61,7 +60,7 @@ public class PotionListener implements Listener {
 													glassbottle(item);
 													event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST,20*30,4));
 													event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.HEAL,1,3));
-													Version.playSound(player.getLocation(),Sound.LEVEL_UP, 0.2F, 1F);
+													Version.playSound(player.getLocation(),Sound.ENTITY_PLAYER_LEVELUP, 0.2F, 1F);
 										    	}else{
 										    		player.sendMessage("私のMP低すぎっ!?");
 										    		event.setCancelled(true);

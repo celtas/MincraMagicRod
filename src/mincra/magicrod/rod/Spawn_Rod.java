@@ -1,7 +1,6 @@
 package mincra.magicrod.rod;
 
 import mincra.magicrod.version.Version;
-
 import org.bukkit.DyeColor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -20,7 +19,7 @@ Plugin plugin;
 	@Override
 	public void run() {
 		final Wolf wolf;
-		wolf=(Wolf)player.getWorld().spawnCreature(player.getLocation(),EntityType.WOLF);
+		wolf=(Wolf)player.getWorld().spawnEntity(player.getLocation(),EntityType.WOLF);
 		Version.playeffect2(wolf.getLocation(), "SPELL_INSTANT");
 		wolf.setCustomName("幻獣");
 		wolf.setCollarColor(DyeColor.GREEN);

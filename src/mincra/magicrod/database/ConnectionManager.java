@@ -1,14 +1,10 @@
 package mincra.magicrod.database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Properties;
-
 import mincra.magicrod.main.Magic;
 import mincra.magicrod.util.Util;
+
+import java.sql.*;
+import java.util.Properties;
 
 public class ConnectionManager {
 	private static String url;

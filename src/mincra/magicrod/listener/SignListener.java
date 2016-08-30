@@ -1,15 +1,15 @@
   package mincra.magicrod.listener;
 
-import java.util.ArrayList;
-import java.util.List;
+  import org.bukkit.ChatColor;
+  import org.bukkit.Chunk;
+  import org.bukkit.Material;
+  import org.bukkit.event.EventHandler;
+  import org.bukkit.event.EventPriority;
+  import org.bukkit.event.Listener;
+  import org.bukkit.event.block.SignChangeEvent;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Chunk;
-import org.bukkit.Material;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.SignChangeEvent;
+  import java.util.ArrayList;
+  import java.util.List;
 
 public class SignListener implements Listener {
 	@EventHandler(priority = EventPriority.LOWEST)

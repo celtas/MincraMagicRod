@@ -1,7 +1,6 @@
 package mincra.magicrod.rod;
 
 import mincra.magicrod.version.Version;
-
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;

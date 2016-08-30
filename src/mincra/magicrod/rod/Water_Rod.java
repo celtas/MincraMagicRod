@@ -1,7 +1,6 @@
 package mincra.magicrod.rod;
 
 import mincra.magicrod.version.Version;
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -31,7 +30,7 @@ public class Water_Rod extends BukkitRunnable{
 			}
 			Vector vec=new Vector(-1*Math.sin(yaw*Math.PI / 180.0)*0.6F,yswim,Math.cos(yaw*Math.PI / 180.0)*0.6F);
 			player.setVelocity(vec);
-			Version.playSound(player.getLocation(), Sound.WATER, 0.1F, 10F);
+			Version.playSound(player.getLocation(), Sound.BLOCK_WATER_AMBIENT, 0.1F, 10F);
 			Version.particle(loc, "WATER_BUBBLE", 0.43F, 0.43F, 0.43F, 1, 10);
 			//Version.a(loc.getWorld(),"bubble", loc.getX(), loc.getY(), loc.getZ(), 10, 0.43D, 0.43D, 0.43D, 0);
 		}

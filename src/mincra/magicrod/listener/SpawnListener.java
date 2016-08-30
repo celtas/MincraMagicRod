@@ -1,11 +1,8 @@
 package mincra.magicrod.listener;
 
-import java.util.Random;
-
 import mincra.magicrod.ai.MonsterAI;
 import mincra.magicrod.main.Magic;
 import mincra.magicrod.version.Version;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -22,6 +19,8 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.metadata.FixedMetadataValue;
+
+import java.util.Random;
 
 public class SpawnListener extends MonsterAI implements Listener{
 	private Magic plugin;
@@ -115,7 +114,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 							mob.setMaxHealth(70);
 							mob.setHealth(70);
 							mob.setCustomName("Chain Zombie");
-							mob.getEquipment().setItemInHand(new ItemStack(Material.IRON_SWORD));
+							mob.getEquipment().setItemInMainHand(new ItemStack(Material.IRON_SWORD));
 							Version.setStats(mob,0.340D);
 						}else if(hash<95){
 							mob.getEquipment().setHelmet(new ItemStack(Material.GOLD_HELMET));
@@ -126,7 +125,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 							mob.setHealth(70);
 							Version.setStats(mob,0.320D);
 							mob.setCustomName("Gold Zombie");
-							mob.getEquipment().setItemInHand(new ItemStack(Material.GOLD_SWORD));
+							mob.getEquipment().setItemInMainHand(new ItemStack(Material.GOLD_SWORD));
 						}else if(hash<99){
 							mob.getEquipment().setHelmet(new ItemStack(Material.DIAMOND_HELMET));
 							mob.getEquipment().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
@@ -134,7 +133,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 							mob.getEquipment().setBoots(new ItemStack(Material.DIAMOND_BOOTS));
 							Version.setStats(mob,0.300D);
 							mob.setCustomName("Diamond Zombie");
-							mob.getEquipment().setItemInHand(new ItemStack(Material.DIAMOND_SWORD));
+							mob.getEquipment().setItemInMainHand(new ItemStack(Material.DIAMOND_SWORD));
 						}else if(hash<99.5){
 							if(((Zombie)mob).isBaby()) ((Zombie)mob).setBaby(false);
 							mob.getEquipment().setBoots(new ItemStack(Material.LEATHER_BOOTS));
@@ -142,9 +141,9 @@ public class SpawnListener extends MonsterAI implements Listener{
 							mob.setMaxHealth(140);
 							mob.setHealth(140);
 							mob.setCustomName(ChatColor.WHITE+""+ChatColor.BOLD+"Fast Zombie");
-							mob.getEquipment().setItemInHand(new ItemStack(Material.BLAZE_ROD));
+							mob.getEquipment().setItemInMainHand(new ItemStack(Material.BLAZE_ROD));
 							mob.setMetadata("MagicType", new FixedMetadataValue(plugin, "FastZombie"));
-							mob.getWorld().playSound(mob.getLocation(), Sound.NOTE_BASS_DRUM, 8F, 1);
+							mob.getWorld().playSound(mob.getLocation(), Sound.BLOCK_NOTE_BASEDRUM, 8F, 1);
 						}else if(hash<=100){
 							mob.getEquipment().setHelmet(greenhelmet);
 							mob.getEquipment().setChestplate(greenchestplate);
@@ -154,10 +153,10 @@ public class SpawnListener extends MonsterAI implements Listener{
 							mob.setMaxHealth(220);
 							mob.setHealth(220);
 							mob.setCustomName(ChatColor.GREEN+""+ChatColor.BOLD+"Heal Zombie");
-							mob.getEquipment().setItemInHand(new ItemStack(Material.BLAZE_ROD));
+							mob.getEquipment().setItemInMainHand(new ItemStack(Material.BLAZE_ROD));
 							mob.setMetadata("MagicType", new FixedMetadataValue(plugin, "HealZombie"));
 							heal(mob);
-							mob.getWorld().playSound(mob.getLocation(), Sound.NOTE_BASS_DRUM, 8F, 1);
+							mob.getWorld().playSound(mob.getLocation(), Sound.BLOCK_NOTE_BASEDRUM, 8F, 1);
 						}
 					}
 					break;
@@ -174,7 +173,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 						mob.setCustomName("Chain Skeleton");
 						ItemStack weapon = new ItemStack(Material.BOW);
 						weapon.addEnchantment(new EnchantmentWrapper(48), 2);
-						mob.getEquipment().setItemInHand(weapon);
+						mob.getEquipment().setItemInMainHand(weapon);
 						mob.setMaxHealth(70);
 						mob.setHealth(70);
 						Version.setStats(mob,0.340D);
@@ -186,7 +185,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 						mob.setCustomName("Gold Skeleton");
 						ItemStack weapon = new ItemStack(Material.BOW);
 						weapon.addEnchantment(new EnchantmentWrapper(48), 3);
-						mob.getEquipment().setItemInHand(weapon);
+						mob.getEquipment().setItemInMainHand(weapon);
 						mob.setMaxHealth(70);
 						mob.setHealth(70);
 						Version.setStats(mob,0.320D);
@@ -198,7 +197,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 						mob.setCustomName("Diamond Skeleton");
 						ItemStack weapon = new ItemStack(Material.BOW);
 						weapon.addEnchantment(new EnchantmentWrapper(48), 5);
-						mob.getEquipment().setItemInHand(weapon);
+						mob.getEquipment().setItemInMainHand(weapon);
 						mob.setMaxHealth(70);
 						mob.setHealth(70);
 						Version.setStats(mob,0.300D);
@@ -210,12 +209,12 @@ public class SpawnListener extends MonsterAI implements Listener{
 						mob.setCustomName(ChatColor.BLUE+""+ChatColor.BOLD+"Cold Skeleton");
 						ItemStack weapon = new ItemStack(Material.BOW);
 						weapon.addUnsafeEnchantment(new EnchantmentWrapper(48), 5);
-						mob.getEquipment().setItemInHand(weapon);
+						mob.getEquipment().setItemInMainHand(weapon);
 						mob.setMaxHealth(300);
 						mob.setHealth(300);
 						Version.setStats(mob,0.200D);
 						blizard(mob);
-						mob.getWorld().playSound(mob.getLocation(), Sound.NOTE_BASS_DRUM, 8F, 1);
+						mob.getWorld().playSound(mob.getLocation(), Sound.BLOCK_NOTE_BASEDRUM, 8F, 1);
 					}else if(hash<99.5){
 						mob.getEquipment().setHelmet(redhelmet);
 						mob.getEquipment().setChestplate(redchestplate);
@@ -224,25 +223,25 @@ public class SpawnListener extends MonsterAI implements Listener{
 						mob.setCustomName(ChatColor.RED+""+ChatColor.BOLD+"Fire Skeleton");
 						ItemStack weapon = new ItemStack(Material.BOW);
 						weapon.addUnsafeEnchantment(new EnchantmentWrapper(48), 5);
-						mob.getEquipment().setItemInHand(weapon);
+						mob.getEquipment().setItemInMainHand(weapon);
 						mob.setMaxHealth(300);
 						mob.setHealth(300);
 						Version.setStats(mob,0.200D);
 						fire(mob);
-						mob.getWorld().playSound(mob.getLocation(), Sound.NOTE_BASS_DRUM, 8F, 1);
+						mob.getWorld().playSound(mob.getLocation(), Sound.BLOCK_NOTE_BASEDRUM, 8F, 1);
 					}else if(hash<=100){
 						mob.getEquipment().setHelmet(greenhelmet);
 						mob.getEquipment().setChestplate(greenchestplate);
 						mob.getEquipment().setLeggings(greenleggings);
 						mob.getEquipment().setBoots(greenboots);
 						mob.setCustomName(ChatColor.GREEN+""+ChatColor.BOLD+"Heal Skeleton");
-						mob.getEquipment().setItemInHand(new ItemStack(Material.BLAZE_ROD));
+						mob.getEquipment().setItemInMainHand(new ItemStack(Material.BLAZE_ROD));
 						mob.setMaxHealth(400);
 						mob.setHealth(400);
 						Version.setStats(mob,0.268D);
 						mob.setMetadata("MagicType", new FixedMetadataValue(plugin, "HealSkeleton"));
 						heal(mob);
-						mob.getWorld().playSound(mob.getLocation(), Sound.NOTE_BASS_DRUM, 8F, 1);
+						mob.getWorld().playSound(mob.getLocation(), Sound.BLOCK_NOTE_BASEDRUM, 8F, 1);
 					}
 					break;
 				case SPIDER:
@@ -339,7 +338,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 						mob.setHealth(50);
 						ItemStack weapon = new ItemStack(Material.GOLD_SWORD);
 						weapon.addEnchantment(new EnchantmentWrapper(16), 1);
-						mob.getEquipment().setItemInHand(weapon);
+						mob.getEquipment().setItemInMainHand(weapon);
 					}else if(hash<99){
 						mob.getEquipment().setHelmet(new ItemStack(Material.CHAINMAIL_HELMET));
 						mob.getEquipment().setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
@@ -348,7 +347,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 						mob.setCustomName("Chain Pigman");
 						ItemStack weapon = new ItemStack(Material.GOLD_SWORD);
 						weapon.addEnchantment(new EnchantmentWrapper(16), 2);
-						mob.getEquipment().setItemInHand(weapon);
+						mob.getEquipment().setItemInMainHand(weapon);
 						mob.setMaxHealth(80);
 						mob.setHealth(80);
 						Version.setStats(mob,0.270D);
@@ -358,13 +357,13 @@ public class SpawnListener extends MonsterAI implements Listener{
 						mob.getEquipment().setLeggings(greenleggings);
 						mob.getEquipment().setBoots(greenboots);
 						mob.setCustomName(ChatColor.GREEN+""+ChatColor.BOLD+"Heal Pigman");
-						mob.getEquipment().setItemInHand(new ItemStack(Material.BLAZE_ROD));
+						mob.getEquipment().setItemInMainHand(new ItemStack(Material.BLAZE_ROD));
 						mob.setMaxHealth(200);
 						mob.setHealth(200);
 						Version.setStats(mob,0.230D);
 						mob.setMetadata("MagicType", new FixedMetadataValue(plugin, "HealPigman"));
 						heal(mob);
-						mob.getWorld().playSound(mob.getLocation(), Sound.NOTE_BASS_DRUM, 8F, 1);
+						mob.getWorld().playSound(mob.getLocation(), Sound.BLOCK_NOTE_BASEDRUM, 8F, 1);
 					}
 					break;
 				case BLAZE:

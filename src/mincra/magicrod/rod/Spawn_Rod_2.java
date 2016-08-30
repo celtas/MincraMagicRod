@@ -1,7 +1,6 @@
 package mincra.magicrod.rod;
 
 import mincra.magicrod.version.Version;
-
 import org.bukkit.DyeColor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -20,21 +19,21 @@ Plugin plugin;
 	@Override
 	public void run() {
 		final Wolf wolf,wolf2,wolf3;
-		wolf=(Wolf)player.getWorld().spawnCreature(player.getLocation(),EntityType.WOLF);
+		wolf=(Wolf)player.getWorld().spawnEntity(player.getLocation(),EntityType.WOLF);
 		Version.playeffect2(wolf.getLocation(), "SPELL_INSTANT");
 		wolf.setCustomName("幻獣");
 		wolf.setCollarColor(DyeColor.GREEN);
 		wolf.setAdult();
 		wolf.setOwner(player);
 		wolf.setBreed(false);
-		wolf2=(Wolf)player.getWorld().spawnCreature(player.getLocation(),EntityType.WOLF);
+		wolf2=(Wolf)player.getWorld().spawnEntity(player.getLocation(),EntityType.WOLF);
 		Version.playeffect2(wolf2.getLocation(), "SPELL_INSTANT");
 		wolf2.setCustomName("幻獣");
 		wolf2.setCollarColor(DyeColor.BLUE);
 		wolf2.setAdult();
 		wolf2.setOwner(player);
 		wolf2.setBreed(false);
-		wolf3=(Wolf)player.getWorld().spawnCreature(player.getLocation(),EntityType.WOLF);
+		wolf3=(Wolf)player.getWorld().spawnEntity(player.getLocation(),EntityType.WOLF);
 		Version.playeffect2(wolf3.getLocation(), "SPELL_INSTANT");
 		wolf3.setCustomName("幻獣");
 		wolf3.setCollarColor(DyeColor.YELLOW);

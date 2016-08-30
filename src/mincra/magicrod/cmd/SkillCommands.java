@@ -1,7 +1,6 @@
 package mincra.magicrod.cmd;
 
 import mincra.magicrod.database.DatabaseManager;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -57,7 +56,7 @@ public class SkillCommands implements CommandExecutor {
 							return true;
 						DatabaseManager.setNotice(user_id, true);
 						player.sendMessage(ChatColor.GREEN+"通知機能を有効にしました.");
-						player.playSound(player.getLocation(), Sound.NOTE_PLING, 1F, 1F);
+						player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1F, 1F);
 						return true;
 					}else if(args[1].equalsIgnoreCase("off")){
 						int user_id2 = DatabaseManager.getUserId(player.getUniqueId());
@@ -65,7 +64,7 @@ public class SkillCommands implements CommandExecutor {
 							return true;
 						DatabaseManager.setNotice(user_id2, false);
 						player.sendMessage(ChatColor.RED+"※通知機能を無効にしました.");
-						player.playSound(player.getLocation(), Sound.NOTE_PLING, 1F, 1F);
+						player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1F, 1F);
 						return true;
 					}
 				}
@@ -85,7 +84,7 @@ public class SkillCommands implements CommandExecutor {
 			return;
 		DatabaseManager.setEnable(user_id, true);
 		player.sendMessage(ChatColor.GREEN+"※スキル機能を有効にしました.");
-		player.playSound(player.getLocation(), Sound.NOTE_PLING, 1F, 1F);
+		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1F, 1F);
 	}
 	private void skillDisable(Player player) {
 		int user_id = DatabaseManager.getUserId(player.getUniqueId());
@@ -93,7 +92,7 @@ public class SkillCommands implements CommandExecutor {
 			return;
 		DatabaseManager.setEnable(user_id, false);
 		player.sendMessage(ChatColor.RED+"※スキル機能を無効にしました.");
-		player.playSound(player.getLocation(), Sound.NOTE_PLING, 1F, 1F);
+		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1F, 1F);
 	}
 	@SuppressWarnings("unused")
 	private void showMagicChest(Player player) {

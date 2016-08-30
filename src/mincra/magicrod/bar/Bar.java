@@ -1,7 +1,6 @@
 package mincra.magicrod.bar;
 
 import mincra.magicrod.main.Magic;
-
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.inventivetalent.bossbar.BossBarAPI;

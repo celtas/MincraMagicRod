@@ -1,13 +1,12 @@
 package mincra.magicrod.listener;
 
-import java.util.Random;
-
 import mincra.magicrod.item.MagicItem;
-
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+
+import java.util.Random;
 
 public class GrassDropListener implements Listener{
 	Random r = new Random();

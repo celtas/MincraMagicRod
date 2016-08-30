@@ -1,24 +1,13 @@
 package mincra.magicrod.rod;
 
-import java.util.List;
-
 import mincra.magicrod.listener.EntityDamageListener;
 import mincra.magicrod.version.Version;
-
 import org.bukkit.Location;
-import org.bukkit.entity.Chicken;
-import org.bukkit.entity.Cow;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Fireball;
-import org.bukkit.entity.Horse;
-import org.bukkit.entity.ItemFrame;
-import org.bukkit.entity.Ocelot;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Sheep;
-import org.bukkit.entity.Villager;
-import org.bukkit.entity.Wolf;
+import org.bukkit.entity.*;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
+
+import java.util.List;
 
 public class InfernoRod_3 extends BukkitRunnable{
 Player player;

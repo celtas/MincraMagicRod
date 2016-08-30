@@ -1,14 +1,10 @@
 package mincra.magicrod.listener;
 
-import java.util.List;
-import java.util.Random;
-
 import mincra.magicrod.api.MagicApi;
 import mincra.magicrod.api.MagicApi.MagicJob;
 import mincra.magicrod.database.DatabaseManager;
 import mincra.magicrod.item.MagicWeapon;
 import mincra.magicrod.version.Version;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -17,6 +13,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.List;
+import java.util.Random;
 
 public class CraftListener implements Listener{
 
@@ -43,7 +42,7 @@ public class CraftListener implements Listener{
 		    	   case "魔法武器番号:9":
 		    		   if(job != MagicJob.KNIGHT){
 		    			   event.setCancelled(true);
-		    			   player.playSound(player.getLocation(),Sound.CLICK, 5F, 2F);
+		    			   player.playSound(player.getLocation(),Sound.UI_BUTTON_CLICK, 5F, 2F);
 		    			   player.sendMessage(inv.getItem(0).getItemMeta().getDisplayName()+ChatColor.GRAY+"は戦士系のみ作ることができます.");
 		    			   return;
 		    		   }
@@ -54,7 +53,7 @@ public class CraftListener implements Listener{
 		    	   case "魔法武器番号:8":
 		    		   if(job != MagicJob.ARCHER){
 		    			   event.setCancelled(true);
-		    			   player.playSound(player.getLocation(),Sound.CLICK, 5F, 2F);
+		    			   player.playSound(player.getLocation(),Sound.UI_BUTTON_CLICK, 5F, 2F);
 		    			   player.sendMessage(inv.getItem(0).getItemMeta().getDisplayName()+ChatColor.GRAY+"はアーチャー系のみ作ることができます.");
 		    			   return;
 		    		   }
@@ -65,7 +64,7 @@ public class CraftListener implements Listener{
 		    	   case "ROD番号:5-3":
 		    		   if(job != MagicJob.PRIEST){
 		    			   event.setCancelled(true);
-		    			   player.playSound(player.getLocation(),Sound.CLICK, 5F, 2F);
+		    			   player.playSound(player.getLocation(),Sound.UI_BUTTON_CLICK, 5F, 2F);
 		    			   player.sendMessage(inv.getItem(0).getItemMeta().getDisplayName()+ChatColor.GRAY+"はプリースト系のみ作ることができます.");
 		    			   return;
 		    		   }
@@ -80,7 +79,7 @@ public class CraftListener implements Listener{
 		    	   case "ROD番号:12-1":
 		    		   if(job != MagicJob.MAGICIAN){
 		    			   event.setCancelled(true);
-		    			   player.playSound(player.getLocation(),Sound.CLICK, 5F, 2F);
+		    			   player.playSound(player.getLocation(),Sound.UI_BUTTON_CLICK, 5F, 2F);
 		    			   player.sendMessage(inv.getItem(0).getItemMeta().getDisplayName()+ChatColor.GRAY+"は魔術師系のみ作ることができます.");
 		    			   return;
 		    		   }
@@ -117,21 +116,21 @@ public class CraftListener implements Listener{
 	//メカニクスソード
 	private boolean MechanicsSword(Player player, CraftingInventory inv) {
 		if(MagicApi.equalsMagicNumber(inv.getItem(7), "魔法アイテム番号", "4")){
-			Version.playSound(player.getLocation(),Sound.ANVIL_USE, 5F, 1.5F);
+			Version.playSound(player.getLocation(),Sound.BLOCK_ANVIL_USE, 5F, 1.5F);
 	    	return false;
 		}
-		player.playSound(player.getLocation(),Sound.CLICK, 5F, 2F);
+		player.playSound(player.getLocation(),Sound.UI_BUTTON_CLICK, 5F, 2F);
 		player.sendMessage(ChatColor.YELLOW+"魔法水晶が足りません。");
     	return true;
 	}
 	//メカニクスソードLv2
 	private boolean MechanicsSwordLv2(Player player, CraftingInventory inv) {
 		if(MagicApi.equalsMagicNumber(inv.getItem(5), "魔法武器番号", "6")){
-			Version.playSound(player.getLocation(),Sound.ANVIL_USE, 5F, 1.5F);
+			Version.playSound(player.getLocation(),Sound.BLOCK_ANVIL_USE, 5F, 1.5F);
 			player.sendMessage(ChatColor.YELLOW+"メカニクスソードの強化に成功しました!!");
 	    	return false;
 		}
-		player.playSound(player.getLocation(),Sound.CLICK, 5F, 2F);
+		player.playSound(player.getLocation(),Sound.UI_BUTTON_CLICK, 5F, 2F);
 		player.sendMessage(ChatColor.YELLOW+"メカニクスソードが足りません。");
     	return true;
 	}
@@ -140,12 +139,12 @@ public class CraftListener implements Listener{
     private Boolean craftCreeperBowLv2(Player player,CraftingInventory inv){
     	if(inv.getItem(5).getItemMeta().getLore()!=null){
 			if((inv.getItem(5).getItemMeta().getLore().get(0).equals(MagicWeapon.creeperBowLv1_Lores.get(0)))){
-				Version.playSound(player.getLocation(),Sound.ANVIL_USE, 5F, 1.5F);
+				Version.playSound(player.getLocation(),Sound.BLOCK_ANVIL_USE, 5F, 1.5F);
 				player.sendMessage(ChatColor.YELLOW+"匠ノ弓の強化に成功しました!!");
 		    	return false;
 			}
 		}
-    	player.playSound(player.getLocation(),Sound.CLICK, 5F, 2F);
+    	player.playSound(player.getLocation(),Sound.UI_BUTTON_CLICK, 5F, 2F);
 		player.sendMessage(ChatColor.YELLOW+"匠ノ弓が必要です。");
     	return true;
     }
@@ -159,11 +158,11 @@ public class CraftListener implements Listener{
     							MagicApi.equalsMagicNumber(inv.getItem(7), "魔法アイテム番号", "2")&&
     								MagicApi.equalsMagicNumber(inv.getItem(8), "魔法アイテム番号", "2")&&
     									MagicApi.equalsMagicNumber(inv.getItem(9), "魔法アイテム番号", "2")){
-				Version.playSound(player.getLocation(),Sound.ANVIL_USE, 5F, 1.5F);
+				Version.playSound(player.getLocation(),Sound.BLOCK_ANVIL_USE, 5F, 1.5F);
 				player.sendMessage(ChatColor.AQUA+"大氷樹の弓の生成に成功しました!!");
 		    	return false;
 		}
-    	player.playSound(player.getLocation(),Sound.CLICK, 5F, 2F);
+    	player.playSound(player.getLocation(),Sound.UI_BUTTON_CLICK, 5F, 2F);
 		player.sendMessage(ChatColor.AQUA+"氷零が必要です。");
     	return true;
     }
@@ -174,7 +173,7 @@ public class CraftListener implements Listener{
     				MagicApi.equalsMagicNumber(inv.getItem(7), "魔法アイテム番号", "2")&&
     					MagicApi.equalsMagicNumber(inv.getItem(9), "魔法アイテム番号", "2")){
     		if(MagicApi.equalsMagicNumber(inv.getItem(5), "魔法武器番号", "3")){
-				Version.playSound(player.getLocation(),Sound.ANVIL_USE, 5F, 1.5F);
+				Version.playSound(player.getLocation(),Sound.BLOCK_ANVIL_USE, 5F, 1.5F);
 				player.sendMessage(ChatColor.AQUA+"大氷樹の弓の強化に成功しました!!");
 		    	return false;
     		}else{
@@ -183,7 +182,7 @@ public class CraftListener implements Listener{
 		}else{
 			player.sendMessage(ChatColor.AQUA+"氷零が必要です。");
 		}
-    	player.playSound(player.getLocation(),Sound.CLICK, 5F, 2F);
+    	player.playSound(player.getLocation(),Sound.UI_BUTTON_CLICK, 5F, 2F);
     	return true;
     }
 	Boolean probability(float probability){

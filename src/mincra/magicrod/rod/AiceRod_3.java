@@ -2,16 +2,11 @@ package mincra.magicrod.rod;
 
 import mincra.magicrod.main.Magic;
 import mincra.magicrod.version.Version;
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Monster;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.WaterMob;
+import org.bukkit.entity.*;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
@@ -29,8 +24,8 @@ public class AiceRod_3 extends BukkitRunnable{
 			if(entity instanceof LivingEntity){
 			final LivingEntity le=(LivingEntity) entity;
 				if(le instanceof Monster||le instanceof WaterMob){
-					Version.playSound(player.getLocation(),Sound.GLASS, 0.5F, 1F);
-					Version.playSound(le.getLocation(), Sound.PORTAL_TRAVEL, 0.1F, 10F);
+					Version.playSound(player.getLocation(),Sound.BLOCK_GLASS_BREAK, 0.5F, 1F);
+					Version.playSound(le.getLocation(), Sound.BLOCK_PORTAL_TRAVEL, 0.1F, 10F);
 					Vector v=new Vector(0,0,0);
 					le.setVelocity(v);
 					Location loc2=le.getLocation().add(-2,0,-2);

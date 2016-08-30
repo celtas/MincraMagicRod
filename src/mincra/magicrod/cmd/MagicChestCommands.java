@@ -2,7 +2,6 @@ package mincra.magicrod.cmd;
 
 import mincra.magicrod.database.DatabaseManager;
 import mincra.magicrod.main.Magic;
-
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

@@ -1,15 +1,14 @@
 package mincra.magicrod.listener;
 
-import java.util.Random;
-
 import mincra.magicrod.item.MagicItem;
 import mincra.magicrod.item.MagicRod;
 import mincra.magicrod.item.MagicWeapon;
-
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.Random;
 
 public class CustomDropListener implements Listener {
 	Random r;

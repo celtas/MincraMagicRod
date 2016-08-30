@@ -1,11 +1,11 @@
 package mincra.magicrod.rod;
 
-import java.util.Random;
-
 import org.bukkit.Location;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.Random;
 
 public class InfernoRod_threed extends BukkitRunnable{
 Player player;

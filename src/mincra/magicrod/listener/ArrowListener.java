@@ -1,19 +1,10 @@
 package mincra.magicrod.listener;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.World;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.TNTPrimed;
+import mincra.magicrod.api.MagicApi;
+import mincra.magicrod.bar.Bar;
+import mincra.magicrod.version.Version;
+import org.bukkit.*;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
@@ -25,9 +16,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import org.inventivetalent.bossbar.BossBarAPI;
 
-import mincra.magicrod.api.MagicApi;
-import mincra.magicrod.bar.Bar;
-import mincra.magicrod.version.Version;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class ArrowListener implements Listener{
 	Random r = new Random();
@@ -107,7 +98,7 @@ public class ArrowListener implements Listener{
     	int hlv=(int) hlv2;
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
-    		Version.playSound(player.getLocation(),Sound.WITHER_SHOOT, 5F, 2F);
+    		Version.playSound(player.getLocation(),Sound.ENTITY_WITHER_SHOOT, 5F, 2F);
 	    	String st=list.get(2);
 	    	//クールタイム
 	    	Float se=Float.valueOf(st.substring(2, 6));
@@ -164,7 +155,7 @@ public class ArrowListener implements Listener{
     	int hlv=(int) hlv2;
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
-    		Version.playSound(player.getLocation(),Sound.WITHER_SHOOT, 5F, 2F);
+    		Version.playSound(player.getLocation(),Sound.ENTITY_WITHER_SHOOT, 5F, 2F);
 	    	String st=list.get(2);
 	    	//クールタイム
 	    	Float se=Float.valueOf(st.substring(2, 6));
@@ -226,7 +217,7 @@ public class ArrowListener implements Listener{
     	int hlv=(int) hlv2;
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
-    		Version.playSound(player.getLocation(),Sound.WITHER_SHOOT, 5F, 2F);
+    		Version.playSound(player.getLocation(),Sound.ENTITY_WITHER_SHOOT, 5F, 2F);
 	    	String st=list.get(2);
 	    	//クールタイム
 	    	Float se=Float.valueOf(st.substring(2, 6));
@@ -251,7 +242,7 @@ public class ArrowListener implements Listener{
 								Random r = new Random();
 								Vector v = new Vector(0,0.3F,0);
 								MetadataValue arrowmetadata = new FixedMetadataValue(plugin, "3");
-					    		Version.playSound(entity.getLocation(),Sound.EXPLODE, 0.5F, 2F);
+					    		Version.playSound(entity.getLocation(),Sound.ENTITY_GENERIC_EXPLODE, 0.5F, 2F);
 								for(int i=0;i<=40;i++){
 									float speed = r.nextFloat()+0.6F;
 									final Arrow arrow = world.spawnArrow(loc, v, speed, 300F);
@@ -283,7 +274,7 @@ public class ArrowListener implements Listener{
     	int hlv=(int) hlv2;
     	if(hlv==0||player.getLevel()>=hlv){
     		player.setLevel(player.getLevel()-hlv);
-    		Version.playSound(player.getLocation(),Sound.WITHER_SHOOT, 10F, 1F);
+    		Version.playSound(player.getLocation(),Sound.ENTITY_WITHER_SHOOT, 10F, 1F);
 	    	String st=list.get(2);
 	    	//クールタイム
 	    	Float se=Float.valueOf(st.substring(2, 6));
@@ -308,7 +299,7 @@ public class ArrowListener implements Listener{
 								Random r = new Random();
 								Vector v = new Vector(0,0.3F,0);
 								MetadataValue arrowmetadata = new FixedMetadataValue(plugin, "3");
-					    		Version.playSound(entity.getLocation(),Sound.EXPLODE, 0.5F, 2F);
+					    		Version.playSound(entity.getLocation(),Sound.ENTITY_GENERIC_EXPLODE, 0.5F, 2F);
 								for(int i=0;i<=80;i++){
 									float speed = r.nextFloat()+0.6F;
 									final Arrow arrow = world.spawnArrow(loc, v, speed, 300F);

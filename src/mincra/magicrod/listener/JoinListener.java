@@ -1,8 +1,11 @@
 
 package mincra.magicrod.listener;
 
-import java.util.List;
-
+import mincra.magicrod.database.DatabaseManager;
+import mincra.magicrod.item.MagicMaterial;
+import mincra.magicrod.main.Magic;
+import mincra.magicrod.skill.SkillType;
+import mincra.magicrod.util.Util;
 import org.bukkit.Achievement;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -15,11 +18,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import mincra.magicrod.database.DatabaseManager;
-import mincra.magicrod.item.MagicMaterial;
-import mincra.magicrod.main.Magic;
-import mincra.magicrod.skill.SkillType;
-import mincra.magicrod.util.Util;
+import java.util.List;
 
 public class JoinListener extends DatabaseManager implements Listener{
 	private Magic plugin;
@@ -61,7 +60,7 @@ public class JoinListener extends DatabaseManager implements Listener{
 					if(inv!=null){
 						for(ItemStack item:inv){
 						    if(item != null){
-						    	player.playSound(player.getLocation(), Sound.NOTE_PLING, 1f, 1f);
+						    	player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
 								player.sendMessage(ChatColor.GOLD+""+ChatColor.BOLD+"ギフトボックスに何かが届いているようです.");
 								player.sendMessage(ChatColor.GRAY+"/giftbox : ギフトボックスを開く.");
 								break;

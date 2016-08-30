@@ -1,8 +1,5 @@
 package mincra.magicrod.main;
 
-import java.io.File;
-import java.io.IOException;
-
 import mincra.magicrod.cmd.GiftBoxCommands;
 import mincra.magicrod.cmd.MagicChestCommands;
 import mincra.magicrod.cmd.MincraCommands;
@@ -13,32 +10,18 @@ import mincra.magicrod.item.MagicItem;
 import mincra.magicrod.item.MagicMaterial;
 import mincra.magicrod.item.MagicRod;
 import mincra.magicrod.item.MagicWeapon;
-import mincra.magicrod.listener.AnvilListener;
-import mincra.magicrod.listener.ArrowListener;
-import mincra.magicrod.listener.GrassDropListener;
-import mincra.magicrod.listener.CraftListener;
-import mincra.magicrod.listener.CustomDropListener;
-import mincra.magicrod.listener.DeathListener;
-import mincra.magicrod.listener.InventoryListener;
-import mincra.magicrod.listener.JoinListener;
-import mincra.magicrod.listener.LightListener;
-import mincra.magicrod.listener.MagicItemUse;
-import mincra.magicrod.listener.EntityDamageListener;
-import mincra.magicrod.listener.PlayerAchievementAwardedListener;
-import mincra.magicrod.listener.PotionListener;
-import mincra.magicrod.listener.SignListener;
-import mincra.magicrod.listener.SoundPacketListener;
-import mincra.magicrod.listener.SpawnListener;
-import mincra.magicrod.listener.WeaponListener;
+import mincra.magicrod.listener.*;
 import mincra.magicrod.rod.Aice;
 import mincra.magicrod.version.Version;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
+import java.io.IOException;
 
 public class Magic extends JavaPlugin{
 	public static Magic plugin;

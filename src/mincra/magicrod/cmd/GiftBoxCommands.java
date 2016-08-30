@@ -3,7 +3,6 @@ package mincra.magicrod.cmd;
 import mincra.magicrod.api.MagicApi;
 import mincra.magicrod.database.DatabaseManager;
 import mincra.magicrod.util.Util;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
