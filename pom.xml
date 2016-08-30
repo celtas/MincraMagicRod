@@ -90,6 +90,13 @@
 	      <scope>system</scope>
 	      <systemPath>${basedir}/lib/craftbukkit184.jar</systemPath>
   		</dependency>
+		<dependency>
+			<groupId>org.bukkit</groupId>
+			<artifactId>craftbukkit_1.10.2</artifactId>
+			<version>1.10.2</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/craftbukkit1102.jar</systemPath>
+		</dependency>
 	    
     </dependencies>
 </project>

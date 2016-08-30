@@ -1,11 +1,6 @@
 
 package mincra.magicrod.listener;
 
-import mincra.magicrod.database.DatabaseManager;
-import mincra.magicrod.item.MagicMaterial;
-import mincra.magicrod.main.Magic;
-import mincra.magicrod.util.Util;
-
 import java.util.List;
 
 import org.bukkit.Achievement;
@@ -19,6 +14,12 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import mincra.magicrod.database.DatabaseManager;
+import mincra.magicrod.item.MagicMaterial;
+import mincra.magicrod.main.Magic;
+import mincra.magicrod.skill.SkillType;
+import mincra.magicrod.util.Util;
 
 public class JoinListener extends DatabaseManager implements Listener{
 	private Magic plugin;
@@ -61,14 +62,14 @@ public class JoinListener extends DatabaseManager implements Listener{
 						for(ItemStack item:inv){
 						    if(item != null){
 						    	player.playSound(player.getLocation(), Sound.NOTE_PLING, 1f, 1f);
-								player.sendMessage(ChatColor.GRAY+"/giftbox: ギフトボックスを開く.");
 								player.sendMessage(ChatColor.GOLD+""+ChatColor.BOLD+"ギフトボックスに何かが届いているようです.");
+								player.sendMessage(ChatColor.GRAY+"/giftbox : ギフトボックスを開く.");
 								break;
 						    }
 						}
 					}else{
-						player.sendMessage(ChatColor.GRAY+"ギフトボックスを取得できませんでした.");
-						Util.debug(ChatColor.YELLOW,"ギフトボックスを取得できませんでした.");
+						player.sendMessage(ChatColor.GRAY+"内部エラー:ギフトボックスを取得できませんでした.");
+						Util.debug(ChatColor.YELLOW,"内部エラー:ギフトボックスを取得できませんでした.");
 					}
 				}
 			}.runTaskLater(plugin, 400);
@@ -92,10 +93,8 @@ public class JoinListener extends DatabaseManager implements Listener{
 								case BREED_COW:							//BREED_COW						種の反映					小麦を使い2頭のウシを繁殖させる
 									break;
 								case BREW_POTION:						//BREW_POTION					町の薬屋さん				ポーションを醸造する
-									if(job==MagicJob.PRIEST&&!materialList.contains(10)){
-										addGiftBoxInventory(user_id,MagicMaterial.resurrection);
-										addMaterialHistory(user_id,getMaterialNumber(MagicMaterial.resurrection));
-									}
+									if(job==MagicJob.PRIEST&&!materialList.contains(SkillType.RESURRECTION.getId()))
+										giveMaterial(user_id,MagicMaterial.resurrection);
 									break;
 								case BUILD_BETTER_PICKAXE:		//BUILD_BETTER_PICKAXE	アップグレード				よりよいツルハシをつくる
 									break;
@@ -108,6 +107,12 @@ public class JoinListener extends DatabaseManager implements Listener{
 								case BUILD_SWORD:						//BUILD_SWORD					いざ突撃!				木材と棒を使い、剣を作る
 									break;
 								case BUILD_WORKBENCH:				//BUILD_WORKBENCH			土台作り					木材を4つ使い、作業台を作る
+									if(job==MagicJob.ARCHER){
+										if(!materialList.contains(SkillType.MAGICARROW.getId()))
+											giveMaterial(user_id,MagicMaterial.magicArrow);
+										if(!materialList.contains(SkillType.DIRECTIONLv1.getId()))
+											giveMaterial(user_id,MagicMaterial.directionLv1);
+									}
 									break;
 								case COOK_FISH:							//COOK_FISH						美味しい魚				魚を釣って焼く
 									break;
@@ -124,6 +129,8 @@ public class JoinListener extends DatabaseManager implements Listener{
 								case FULL_BEACON:						//FULL_BEACON					ビーコン使い				最大状態のビーコンを組み立てる
 									break;
 								case GET_BLAZE_ROD:					//GET_BLAZE_ROD				炎の中へ					ブレイズロッドを手に入れる
+									if(job==MagicJob.MAGICIAN && !materialList.contains(SkillType.FIRE.getId()))
+										giveMaterial(user_id,MagicMaterial.fire);
 									break;
 								case GET_DIAMONDS:					//GET_DIAMONDS					ダイヤモンド!				鉄の道具を使ってダイヤモンドを手に入れる
 									break;
@@ -133,9 +140,18 @@ public class JoinListener extends DatabaseManager implements Listener{
 									break;
 								case KILL_ENEMY:							//KILL_ENEMY						モンスターハンター		モンスターを攻撃して倒す
 									if(job==MagicJob.MAGICIAN){
-										if(materialList.contains(1)){
-
-										}
+										if(!materialList.contains(SkillType.BLIZZARD.getId()))
+											giveMaterial(user_id,MagicMaterial.blizzard);
+										if(player.hasPermission("jobs.hunter30")&&!materialList.contains(SkillType.THUNDER.getId()))
+											giveMaterial(user_id,MagicMaterial.thunder);
+									}
+									if(job==MagicJob.PRIEST){
+										if(!materialList.contains(SkillType.HOLYLv1.getId()))
+											giveMaterial(user_id,MagicMaterial.holyLv1);
+									}
+									if(job==MagicJob.KNIGHT){
+										if(!materialList.contains(SkillType.ATTACK.getId()))
+											giveMaterial(user_id,MagicMaterial.attack);
 									}
 									break;
 								case KILL_WITHER:						//KILL_WITHER						はじまり。					ウィザーを倒す
@@ -149,11 +165,24 @@ public class JoinListener extends DatabaseManager implements Listener{
 								case ON_A_RAIL:							//ON_A_RAIL							世界のトロッコから		トロッコにのって出発地点から1km以上走行する
 									break;
 								case OPEN_INVENTORY:				//OPEN_INVENTORY				所持品の確認			「E」キーを押して持ち物をみる
+									if(!materialList.contains(SkillType.CHARGELv1.getId()))
+										giveMaterial(user_id,MagicMaterial.chargeLv1);
+									if(!materialList.contains(SkillType.WALKSPEEDLv1.getId()))
+										giveMaterial(user_id,MagicMaterial.walkSpeedLv1);
+									
+									if(job==MagicJob.PRIEST){
+										if(!materialList.contains(SkillType.CURELv1.getId()))
+											giveMaterial(user_id,MagicMaterial.cureLv1);
+									}
+									if(job==MagicJob.KNIGHT){
+										if(!materialList.contains(SkillType.WALL.getId()))
+											giveMaterial(user_id,MagicMaterial.wall);
+									}
 									break;
 								case OVERKILL:								//OVERKILL							オーバーキル				一撃でハート8個分のダメージを与える
 									break;
 								case OVERPOWERED:						//OVERPOWERED					圧倒的な力				強い効果を持つリンゴを作成する
-									if(job==MagicJob.KNIGHT&&!materialList.contains(11)){
+									if(job==MagicJob.KNIGHT&&!materialList.contains(SkillType.BOOST.getId())){
 										int user_id = getUserId(player.getUniqueId());
 										if(user_id == -1)
 											return;
@@ -163,18 +192,30 @@ public class JoinListener extends DatabaseManager implements Listener{
 									break;
 								case SNIPE_SKELETON:					//SNIPE_SKELETON				スナイパー対決			50m以上離れたスケルトンを矢で倒す
 									if(job==MagicJob.ARCHER){
-
+										if(player.hasPermission("jobs.hunter30")&&!materialList.contains(SkillType.DEVIDELv1.getId()))
+											giveMaterial(user_id,MagicMaterial.devideLv1);
 									}
 									break;
 								case SPAWN_WITHER:					//SPAWN_WITHER					はじまり?					ウィザーを出現させる
 									break;
 								case THE_END:								//THE_END							おしまい。					エンダードラゴンを倒す
+									if(job==MagicJob.MAGICIAN){
+										if(player.hasPermission("jobs.hunter30") && !materialList.contains(SkillType.GRAVITYLv1.getId()))
+												giveMaterial(user_id,MagicMaterial.gravityLv1);
+										if(player.hasPermission("jobs.hunter40") && !materialList.contains(SkillType.UNGRAVITYLv1.getId()))
+											giveMaterial(user_id,MagicMaterial.untigravityLv1);
+									}
 									break;
 								default:
 									break;
 							}
 						}
 					}
+				}
+
+				private void giveMaterial(int user_id, ItemStack itemstack) {
+					addGiftBoxInventory(user_id,itemstack);
+					addMaterialHistory(user_id,getMaterialNumber(itemstack));
 				}
 			}.runTaskLater(plugin, 600);
 		}

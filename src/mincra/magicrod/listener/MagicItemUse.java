@@ -273,51 +273,51 @@ public class MagicItemUse extends Skill implements Listener {
 								switch(lore.substring(lore.indexOf(":")+1)){
 									//エクスペlv1
 									case "1-1":
-										rod101(player,item);
+										expeRod_101(player,item);
 										break;
 									//エクスペlv2
 									case "1-2":
-										rod102(player,item);
+										expeRod_102(player,item);
 										break;
 									//エクスペlv3
 									case "1-3":
-										rod103(player,item);
+										expeRod_103(player,item);
 										break;
 									//青水晶の杖
 									case "2-1":
-										rod201(player,item);
+										jumpRod_201(player,item);
 										break;
 									//蒼水晶の杖lv2
 									case "2-2":
-										rod202(player,item);
+										jumpRod_202(player,item);
 										break;
 									//蒼水晶の杖lv3
 									case "2-3":
-										rod203(player,item);
+										jumpRod_203(player,item);
 										break;
 									//インフェルノ杖lv1
 									case "3-1":
-										rod301(player,item);
+										infernoRod_301(player,item);
 										break;
 									//インフェルノ杖lv2
 									case "3-2":
-										rod302(player,item);
+										infernoRod_302(player,item);
 										break;
 									//インフェルノ杖lv3
 									case "3-3":
-										rod303(player,item);
+										infernoRod_303(player,item);
 										break;
 									//癒しの杖lv1
 									case "5-1":
-										rod501(player,item);
+										cureRod_501(player,item);
 										break;
 									//癒しの杖lv2
 									case "5-2":
-										rod502(player,item);
+										cureRod_502(player,item);
 										break;
 									//癒しの杖lv3
 									case "5-3":
-										rod503(player,item);
+										cureRod_503(player,item);
 										break;
 									//翠水晶の杖lv1
 									case "6-1":
@@ -341,7 +341,7 @@ public class MagicItemUse extends Skill implements Listener {
 										break;
 									//水杖
 									case "9-1":
-								    	rod901(player,item);
+								    	waterRod_901(player,item);
 									default:
 										break;
 								}
@@ -676,7 +676,7 @@ public class MagicItemUse extends Skill implements Listener {
 	}
 
 	@SuppressWarnings("deprecation")
-	private Boolean rod101(Player player,ItemStack item){
+	private Boolean expeRod_101(Player player,ItemStack item){
 		List<String> list=new ArrayList<String>();
     	list=item.getItemMeta().getLore();
     	//MP消費
@@ -716,7 +716,7 @@ public class MagicItemUse extends Skill implements Listener {
 	}
 
 	@SuppressWarnings("deprecation")
-	private Boolean rod102(Player player,ItemStack item){
+	private Boolean expeRod_102(Player player,ItemStack item){
 		List<String> list=new ArrayList<String>();
     	list=item.getItemMeta().getLore();
     	//MP消費
@@ -755,7 +755,7 @@ public class MagicItemUse extends Skill implements Listener {
     	}
 	}
 	@SuppressWarnings("deprecation")
-	private Boolean rod103(Player player,ItemStack item){
+	private Boolean expeRod_103(Player player,ItemStack item){
 		List<String> list=new ArrayList<String>();
     	list=item.getItemMeta().getLore();
     	//MP消費
@@ -794,7 +794,7 @@ public class MagicItemUse extends Skill implements Listener {
     	}
 	}
 	@SuppressWarnings("deprecation")
-	private Boolean rod201(Player player,ItemStack item){
+	private Boolean jumpRod_201(Player player,ItemStack item){
 		List<String> list=new ArrayList<String>();
     	list=item.getItemMeta().getLore();
     	//MP消費
@@ -833,7 +833,7 @@ public class MagicItemUse extends Skill implements Listener {
     	}
 	}
 	@SuppressWarnings("deprecation")
-	private Boolean rod202(Player player,ItemStack item){
+	private Boolean jumpRod_202(Player player,ItemStack item){
 		List<String> list=new ArrayList<String>();
     	list=item.getItemMeta().getLore();
     	//MP消費
@@ -872,7 +872,7 @@ public class MagicItemUse extends Skill implements Listener {
     	}
 	}
 	@SuppressWarnings("deprecation")
-	private Boolean rod203(Player player,ItemStack item){
+	private Boolean jumpRod_203(Player player,ItemStack item){
 		List<String> list=new ArrayList<String>();
     	list=item.getItemMeta().getLore();
     	//MP消費
@@ -912,7 +912,7 @@ public class MagicItemUse extends Skill implements Listener {
     	}
 	}
 	@SuppressWarnings("deprecation")
-	private Boolean rod301(Player player,ItemStack item){
+	private Boolean infernoRod_301(Player player,ItemStack item){
 		List<String> list=new ArrayList<String>();
     	list=item.getItemMeta().getLore();
     	//MP消費
@@ -951,7 +951,7 @@ public class MagicItemUse extends Skill implements Listener {
     	}
 	}
 	@SuppressWarnings("deprecation")
-	private Boolean rod302(Player player,ItemStack item){
+	private Boolean infernoRod_302(Player player,ItemStack item){
 		List<String> list=new ArrayList<String>();
     	list=item.getItemMeta().getLore();
     	//MP消費
@@ -990,7 +990,7 @@ public class MagicItemUse extends Skill implements Listener {
     	}
 	}
 	@SuppressWarnings("deprecation")
-	private Boolean rod303(Player player,ItemStack item){
+	private Boolean infernoRod_303(Player player,ItemStack item){
 		List<String> list=new ArrayList<String>();
     	list=item.getItemMeta().getLore();
     	//MP消費
@@ -1228,7 +1228,7 @@ public class MagicItemUse extends Skill implements Listener {
     	}
 	}
 	@SuppressWarnings("deprecation")
-	private Boolean rod501(Player player,ItemStack item){
+	private Boolean cureRod_501(Player player,ItemStack item){
 		List<String> list=new ArrayList<String>();
     	list=item.getItemMeta().getLore();
     	//MP消費
@@ -1267,7 +1267,7 @@ public class MagicItemUse extends Skill implements Listener {
     	}
 	}
 	@SuppressWarnings("deprecation")
-	private Boolean rod502(Player player,ItemStack item){
+	private Boolean cureRod_502(Player player,ItemStack item){
 		List<String> list=new ArrayList<String>();
     	list=item.getItemMeta().getLore();
     	//MP消費
@@ -1306,7 +1306,7 @@ public class MagicItemUse extends Skill implements Listener {
     	}
 	}
 	@SuppressWarnings("deprecation")
-	private Boolean rod503(Player player,ItemStack item){
+	private Boolean cureRod_503(Player player,ItemStack item){
 		 List<String> list=new ArrayList<String>();
 	    	list=item.getItemMeta().getLore();
 	    	//MP消費
@@ -1729,7 +1729,7 @@ public class MagicItemUse extends Skill implements Listener {
     	}
 	}
 	@SuppressWarnings("deprecation")
-	private Boolean rod901(Player player,ItemStack item){
+	private Boolean waterRod_901(Player player,ItemStack item){
 		List<String> list=new ArrayList<String>();
     	list=item.getItemMeta().getLore();
     	//MP消費

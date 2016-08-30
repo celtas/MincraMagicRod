@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import mincra.magicrod.api.MagicApi;
-import mincra.magicrod.bar.Bar;
-import mincra.magicrod.version.Version;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -21,7 +17,6 @@ import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.metadata.MetadataValue;
@@ -29,6 +24,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import org.inventivetalent.bossbar.BossBarAPI;
+
+import mincra.magicrod.api.MagicApi;
+import mincra.magicrod.bar.Bar;
+import mincra.magicrod.version.Version;
 
 public class ArrowListener implements Listener{
 	Random r = new Random();

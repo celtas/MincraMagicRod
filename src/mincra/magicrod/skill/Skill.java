@@ -1,13 +1,17 @@
 package mincra.magicrod.skill;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import mincra.magicrod.bar.Bar;
 import mincra.magicrod.item.MagicItem;
 import mincra.magicrod.listener.DeathListener;
 import mincra.magicrod.main.Magic;
+import mincra.magicrod.rod.ExpRod;
 import mincra.magicrod.version.Version;
 
 import org.bukkit.ChatColor;
@@ -15,6 +19,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
@@ -29,7 +34,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-public class Skill {
+public class Skill{
 	protected static HashMap<String,Timestamp> boostPlayers = new HashMap<String,Timestamp>();
 	protected static HashMap<String,Timestamp> disableArrowPlayers = new HashMap<String,Timestamp>();
 	Random r = new Random();
@@ -429,7 +434,20 @@ public class Skill {
 
 	}
 	protected void devideLv1(final Player player){
-		
+		player.playSound(player.getLocation(), Sound.SHOOT_ARROW, 1, 1);
+		final Arrow originalArrow = player.getWorld().spawnArrow(player.getLocation(),player.getLocation().getDirection(), 0.6F, 12);
+		originalArrow.setShooter(player);
+		new BukkitRunnable(){
+			int count = 0;
+			@Override
+			public void run() {
+				Arrow arrow = player.getWorld().spawnArrow(originalArrow.getLocation(),player.getLocation().getDirection(), 0.6F, 12);
+				arrow.setShooter(player);
+				count++;
+				if(count>10)
+					this.cancel();
+			}
+		}.runTaskTimer(plugin, 20, 2);
 	}
 	protected void chargeLv1(final Player player) {
 		player.playSound(player.getLocation(), Sound.LEVEL_UP, 1, 1);
@@ -446,4 +464,5 @@ public class Skill {
 			}
 		}.runTaskTimer(plugin, 10, 10);
 	}
+	
 }

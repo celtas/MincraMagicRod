@@ -29,6 +29,9 @@ public class Version{
 			case "org.bukkit.craftbukkit.v1_8_R3":
 				effect = (EffectInterface) Class.forName("mincra.magicrod.version.v_1_8_R3.Effect").newInstance();
 				break;
+			case "org.bukkit.craftbukkit.v1_10_R1":
+				effect = (EffectInterface) Class.forName("mincra.magicrod.version.v_1_10_R1.Effect").newInstance();
+				break;
 			default:
 				String name = Bukkit.getServer().getClass().getPackage().getName();
 				Bukkit.getLogger().info(ChatColor.YELLOW+"バージョン"+name.substring(name.lastIndexOf('.') + 2)+"は非対応です。");

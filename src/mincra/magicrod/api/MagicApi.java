@@ -1,19 +1,15 @@
 package mincra.magicrod.api;
 
 
-import mincra.magicrod.api.MagicApi.MagicJob;
-import mincra.magicrod.database.ConnectionManager;
-import mincra.magicrod.database.DatabaseManager;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+
 import mincra.magicrod.item.MagicItem;
 import mincra.magicrod.item.MagicMaterial;
 import mincra.magicrod.item.MagicRod;
 import mincra.magicrod.item.MagicWeapon;
 import mincra.magicrod.util.Util;
-
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 public class MagicApi {
 	public static enum MagicJob {PRIEST,MAGICIAN,KNIGHT,ARCHER, NONE};
