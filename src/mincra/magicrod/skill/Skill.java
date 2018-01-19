@@ -1,15 +1,23 @@
 package mincra.magicrod.skill;
 
-import mincra.magicrod.item.MagicItem;
-import mincra.magicrod.listener.DeathListener;
-import mincra.magicrod.main.Magic;
-import mincra.magicrod.version.Version;
+import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Random;
+import java.util.Set;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Monster;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Skeleton;
+import org.bukkit.entity.WaterMob;
+import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.potion.PotionEffect;
@@ -17,10 +25,10 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.Random;
-import java.util.Set;
+import mincra.magicrod.item.MagicItem;
+import mincra.magicrod.listener.DeathListener;
+import mincra.magicrod.main.Magic;
+import mincra.magicrod.version.Version;
 
 public class Skill{
 	protected static HashMap<String,Timestamp> boostPlayers = new HashMap<String,Timestamp>();
@@ -452,5 +460,21 @@ public class Skill{
 			}
 		}.runTaskTimer(plugin, 10, 10);
 	}
-	
+	protected void invisiblehands(Player player,int x,int y,int z,int limit,int duration,int amp)	 {
+		player.playSound(player.getLocation(), Sound.ENTITY_ENDERDRAGON_FLAP, 1, 1);
+		for(Entity en:player.getWorld().getNearbyEntities(player.getLocation(), x, y, z)){
+			int cnt = 0;
+
+			if(en instanceof Monster){
+				((Monster)en).damage(1D,player);
+				((Monster)en).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, duration, amp));
+				((Monster)en).addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, duration, 1));
+				((Monster)en).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, duration, 20));
+				cnt++;
+				if(cnt >= limit){
+					break;
+				}
+			}
+		}
+	}
 }

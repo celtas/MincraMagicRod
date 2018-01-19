@@ -1,10 +1,8 @@
 package mincra.magicrod.listener;
 
-import mincra.magicrod.bar.Bar;
-import mincra.magicrod.item.MagicItem;
-import mincra.magicrod.util.Util;
-import mincra.magicrod.version.Version;
-import org.bukkit.Bukkit;
+import java.sql.Timestamp;
+import java.util.HashMap;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -14,14 +12,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.inventivetalent.bossbar.BossBarAPI;
 
-import java.sql.Timestamp;
-import java.util.HashMap;
+import mincra.magicrod.bar.Bar;
+import mincra.magicrod.item.MagicItem;
+import mincra.magicrod.version.Version;
 
 
 public class DeathListener implements Listener {
@@ -73,7 +71,7 @@ public class DeathListener implements Listener {
 	public void onEntityDamageEvent(EntityDamageEvent e) {
         if(e.getEntity() instanceof Player) {
             Player player = (Player) e.getEntity();
-            if(e.getCause() == DamageCause.VOID){
+            /*if(e.getCause() == DamageCause.VOID){
         		e.setCancelled(true);
 				player.setHealth(player.getMaxHealth());
 				player.setFallDistance(0);
@@ -82,7 +80,7 @@ public class DeathListener implements Listener {
 				Util.debug(ChatColor.YELLOW, player.getLocation().toString());
 				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "central "+player.getName());
         		return;
-        	}
+        	} 9/11 該当箇所をコメントアウト。死亡がキャンセルされるのみで永遠に奈落に堕ち続ける。エンド死亡時のこともあるのでコメントアウト。*/
 			if(!(player.getWorld().getName().equalsIgnoreCase("athletic"))){
                 if((player.getHealth()-e.getDamage()) <= 0) {
                 	if(resurrectionPlayers.containsKey(player.getName())){

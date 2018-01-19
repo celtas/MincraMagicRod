@@ -1,12 +1,13 @@
 package mincra.magicrod.rod;
 
-import mincra.magicrod.version.Version;
 import org.bukkit.DyeColor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Wolf;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import mincra.magicrod.version.Version;
 
 public class Spawn_Rod_2 extends BukkitRunnable{
 Player player;
@@ -15,7 +16,6 @@ Plugin plugin;
 		player=_player;
 		plugin=_plugin;
 	}
-	@SuppressWarnings("deprecation")
 	@Override
 	public void run() {
 		final Wolf wolf,wolf2,wolf3;

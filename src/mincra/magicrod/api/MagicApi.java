@@ -1,18 +1,19 @@
 package mincra.magicrod.api;
 
 
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+
 import mincra.magicrod.item.MagicItem;
 import mincra.magicrod.item.MagicMaterial;
 import mincra.magicrod.item.MagicRod;
 import mincra.magicrod.item.MagicWeapon;
 import mincra.magicrod.util.Util;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 
 public class MagicApi {
 	public static enum MagicJob {PRIEST,MAGICIAN,KNIGHT,ARCHER, NONE};
-	
+
 	public static String getMagicType(ItemStack item){
 		if(item!=null){
 			if(item.getItemMeta().hasLore()){
@@ -192,7 +193,7 @@ public class MagicApi {
 		return -1;
 	}
 	public static MagicJob getMagicJob(ItemStack item){
-		if(isMagicMaterial(item)){ 
+		if(isMagicMaterial(item)){
 			String lore = item.getItemMeta().getLore().get(4);
 			lore = ChatColor.stripColor(lore);
 			int num = lore.indexOf("+");
@@ -265,6 +266,12 @@ public class MagicApi {
 				return MagicMaterial.devideLv1;
 	    	case 24:
 				return MagicMaterial.chargeLv1;
+	    	case 25:
+				return MagicMaterial.invisiblehandsLv1;
+	    	case 26:
+				return MagicMaterial.invisiblehandsLv2;
+	    	case 27:
+				return MagicMaterial.invisiblehandsLv3;
 		    default:
 		    	Util.debug(ChatColor.YELLOW+"エラー - getMaterial():"+material_id);
 		    	return null;

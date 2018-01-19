@@ -1,10 +1,19 @@
 package mincra.magicrod.listener;
 
-import mincra.magicrod.api.MagicApi;
-import mincra.magicrod.bar.Bar;
-import mincra.magicrod.version.Version;
-import org.bukkit.*;
-import org.bukkit.entity.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.World;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
@@ -16,9 +25,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import org.inventivetalent.bossbar.BossBarAPI;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import mincra.magicrod.api.MagicApi;
+import mincra.magicrod.bar.Bar;
+import mincra.magicrod.version.Version;
 
 public class ArrowListener implements Listener{
 	Random r = new Random();
@@ -247,6 +256,7 @@ public class ArrowListener implements Listener{
 									float speed = r.nextFloat()+0.6F;
 									final Arrow arrow = world.spawnArrow(loc, v, speed, 300F);
 									arrow.setMetadata("MagicWeapon", arrowmetadata);
+									arrow.setShooter(player);
 									new BukkitRunnable(){
 										@Override
 										public void run() {
@@ -310,6 +320,7 @@ public class ArrowListener implements Listener{
 										}
 									}.runTaskLater(plugin, 200);
 									arrow.setMetadata("MagicWeapon", arrowmetadata);
+									arrow.setShooter(player);
 								}
 								entity.remove();
 							}else{
