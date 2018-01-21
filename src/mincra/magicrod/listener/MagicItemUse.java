@@ -91,6 +91,9 @@ public class MagicItemUse extends Skill implements Listener {
 						if(BossBarAPI.hasBar(player)==false&&event.getRightClicked() instanceof Player){
 							Player player2=(Player) event.getRightClicked();
 							String number = lore.substring(lore.indexOf(":")+1);
+							if(player.hasPermission("mincra.admin.debug")){
+								player.sendMessage(ChatColor.GRAY+"デバッグ01");
+							}
 							switch(number){
 								case "4-1":
 									rod401(player,player2,item);
