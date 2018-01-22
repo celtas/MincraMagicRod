@@ -1,10 +1,16 @@
 package mincra.magicrod.listener;
 
-import mincra.magicrod.bar.Bar;
-import mincra.magicrod.version.Version;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Damageable;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Monster;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -14,9 +20,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.inventivetalent.bossbar.BossBarAPI;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import mincra.magicrod.bar.Bar;
+import mincra.magicrod.version.Version;
 
 public class WeaponListener implements Listener{
 	private Random r = new Random();
@@ -30,7 +35,7 @@ public class WeaponListener implements Listener{
 		if(event.getCause().equals(DamageCause.ENTITY_ATTACK)&&
 				event.getDamager() instanceof Player&&event.getEntity() instanceof Monster){
 			Player player=(Player) event.getDamager();
-			ItemStack item=player.getItemInHand();
+			ItemStack item=player.getInventory().getItemInMainHand();
 			if(item==null)
 				return;
 			if(!item.getItemMeta().hasLore())

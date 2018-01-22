@@ -25,14 +25,17 @@ public enum SkillType{
 	MAGICARROW(21),
 	DIRECTIONLv1(22),
 	DEVIDELv1(23),
-	CHARGELv1(24);
-	
+	CHARGELv1(24),
+	INVISIBLEHANDSLv1(25),
+	INVISIBLEHANDSLv2(26),
+	INVISIBLEHANDSLv3(27);
+
 	private final int id;
-	
+
 	private SkillType(final int id){
 		this.id = id;
 	}
-	
+
 	public int getId(){
 		return id;
 	}

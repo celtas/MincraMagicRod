@@ -1,12 +1,6 @@
 
 package mincra.magicrod.listener;
 
-import mincra.magicrod.database.DatabaseManager;
-import mincra.magicrod.item.MagicMaterial;
-import mincra.magicrod.main.Magic;
-import mincra.magicrod.skill.SkillType;
-import mincra.magicrod.util.Util;
-import org.bukkit.Achievement;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -18,7 +12,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.List;
+import mincra.magicrod.database.DatabaseManager;
+import mincra.magicrod.main.Magic;
+import mincra.magicrod.util.Util;
 
 public class JoinListener extends DatabaseManager implements Listener{
 	private Magic plugin;
@@ -78,7 +74,7 @@ public class JoinListener extends DatabaseManager implements Listener{
 				public void run() {
 					if(!player.isOnline())
 						this.cancel();
-					List<Integer> materialList = DatabaseManager.getMaterialHistory(user_id);
+/*					List<Integer> materialList = DatabaseManager.getMaterialHistory(user_id);
 					MagicJob job = DatabaseManager.getMagicJob(user_id);
 					for(Achievement achievement:Achievement.values()){
 						if(player.hasAchievement(achievement)){
@@ -168,7 +164,7 @@ public class JoinListener extends DatabaseManager implements Listener{
 										giveMaterial(user_id,MagicMaterial.chargeLv1);
 									if(!materialList.contains(SkillType.WALKSPEEDLv1.getId()))
 										giveMaterial(user_id,MagicMaterial.walkSpeedLv1);
-									
+
 									if(job==MagicJob.PRIEST){
 										if(!materialList.contains(SkillType.CURELv1.getId()))
 											giveMaterial(user_id,MagicMaterial.cureLv1);
@@ -210,8 +206,9 @@ public class JoinListener extends DatabaseManager implements Listener{
 							}
 						}
 					}
-				}
+*/				}
 
+				@SuppressWarnings("unused")
 				private void giveMaterial(int user_id, ItemStack itemstack) {
 					addGiftBoxInventory(user_id,itemstack);
 					addMaterialHistory(user_id,getMaterialNumber(itemstack));

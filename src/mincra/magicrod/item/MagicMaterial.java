@@ -1,14 +1,15 @@
 package mincra.magicrod.item;
 
-import mincra.magicrod.main.Magic;
+import java.util.Arrays;
+import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.Arrays;
-import java.util.List;
+import mincra.magicrod.main.Magic;
 
 public class MagicMaterial{
 	Magic plugin;
@@ -37,6 +38,9 @@ public class MagicMaterial{
 	public static ItemStack directionLv1 = new ItemStack(Material.QUARTZ,1);
 	public static ItemStack devideLv1 = new ItemStack(Material.ARROW,1);
 	public static ItemStack chargeLv1 = new ItemStack(Material.MAGMA_CREAM,1);
+	public static ItemStack invisiblehandsLv1 = new ItemStack(Material.BOOK, 1);
+	public static ItemStack invisiblehandsLv2 = new ItemStack(Material.BOOK, 1);
+	public static ItemStack invisiblehandsLv3 = new ItemStack(Material.BOOK, 1);
 
 	//魔法領域-そのうち実装する予定. 魔法領域とはスキルにセットするとき100の持ち点から減らしていく.
 	//マテリアルは追加したら,ConnectionManager,MagicApi,MagicItemUseに書き込む.
@@ -209,6 +213,27 @@ public class MagicMaterial{
 															,ChatColor.LIGHT_PURPLE+				"0     +全ての職で装備可能"
 															,ChatColor.LIGHT_PURPLE+				"10    +魔法領域"
 															);
+	public final static List<String> invisiblehandsLv1Lore = Arrays.asList(ChatColor.DARK_GRAY+		"魔法マテリアル:25"
+															,ChatColor.DARK_GRAY+				"-陰属性-追加効果:怠惰なる権能"
+															,ChatColor.DARK_GRAY+				"10    +クールタイム"
+															,ChatColor.DARK_GRAY+				"5     +MP消費"
+															,ChatColor.DARK_GRAY+				"0     +全ての職で装備可能"
+															,ChatColor.DARK_GRAY+				"5    +魔法領域"
+															);
+	public final static List<String> invisiblehandsLv2Lore = Arrays.asList(ChatColor.DARK_GRAY+		"魔法マテリアル:26"
+															,ChatColor.DARK_GRAY+				"-陰属性-追加効果:怠惰なる権能"
+															,ChatColor.DARK_GRAY+				"7    +クールタイム"
+															,ChatColor.DARK_GRAY+				"10     +MP消費"
+															,ChatColor.DARK_GRAY+				"0     +全ての職で装備可能"
+															,ChatColor.DARK_GRAY+				"10    +魔法領域"
+															);
+	public final static List<String> invisiblehandsLv3Lore = Arrays.asList(ChatColor.DARK_GRAY+		"魔法マテリアル:27"
+															,ChatColor.DARK_GRAY+				"-陰属性-追加効果:怠惰なる権能"
+															,ChatColor.DARK_GRAY+				"15    +クールタイム"
+															,ChatColor.DARK_GRAY+				"10     +MP消費"
+															,ChatColor.DARK_GRAY+				"3     +魔術師系のみ装備可能"
+															,ChatColor.DARK_GRAY+				"20    +魔法領域"
+															);
 
 	public MagicMaterial(Magic _plugin) {
 		plugin=_plugin;
@@ -356,5 +381,22 @@ public class MagicMaterial{
 		chargeLv1Meta.setLore(chargeLv1Lore);
 		chargeLv1.setItemMeta(chargeLv1Meta);
 		chargeLv1.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS,1);
+		ItemMeta invisiblehandsLv1Meta = invisiblehandsLv1.getItemMeta();
+		invisiblehandsLv1Meta.setDisplayName(ChatColor.DARK_GRAY+""+ChatColor.BOLD+"見えざる手Lv1");
+		invisiblehandsLv1Meta.setLore(invisiblehandsLv1Lore);
+		invisiblehandsLv1.setItemMeta(invisiblehandsLv1Meta);
+		invisiblehandsLv1.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS,1);
+
+		ItemMeta invisiblehandsLv2Meta = invisiblehandsLv2.getItemMeta();
+		invisiblehandsLv2Meta.setDisplayName(ChatColor.DARK_GRAY+""+ChatColor.BOLD+"見えざる手Lv2");
+		invisiblehandsLv2Meta.setLore(invisiblehandsLv2Lore);
+		invisiblehandsLv2.setItemMeta(invisiblehandsLv2Meta);
+		invisiblehandsLv2.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS,1);
+
+		ItemMeta invisiblehandsLv3Meta = invisiblehandsLv3.getItemMeta();
+		invisiblehandsLv3Meta.setDisplayName(ChatColor.DARK_GRAY+""+ChatColor.BOLD+"見えざる手Lv3");
+		invisiblehandsLv3Meta.setLore(invisiblehandsLv3Lore);
+		invisiblehandsLv3.setItemMeta(invisiblehandsLv3Meta);
+		invisiblehandsLv3.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS,1);
 	}
 }

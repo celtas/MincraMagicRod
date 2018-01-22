@@ -1,10 +1,8 @@
 package mincra.magicrod.listener;
 
-import mincra.magicrod.api.MagicApi;
-import mincra.magicrod.api.MagicApi.MagicJob;
-import mincra.magicrod.database.DatabaseManager;
-import mincra.magicrod.item.MagicWeapon;
-import mincra.magicrod.version.Version;
+import java.util.List;
+import java.util.Random;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -14,8 +12,11 @@ import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.List;
-import java.util.Random;
+import mincra.magicrod.api.MagicApi;
+import mincra.magicrod.api.MagicApi.MagicJob;
+import mincra.magicrod.database.DatabaseManager;
+import mincra.magicrod.item.MagicWeapon;
+import mincra.magicrod.version.Version;
 
 public class CraftListener implements Listener{
 
@@ -40,36 +41,36 @@ public class CraftListener implements Listener{
 		    	   case "魔法武器番号:6":
 		    	   case "魔法武器番号:7":
 		    	   case "魔法武器番号:9":
-		    		   if(job != MagicJob.KNIGHT){
+/*		    		   if(job != MagicJob.KNIGHT){
 		    			   event.setCancelled(true);
 		    			   player.playSound(player.getLocation(),Sound.UI_BUTTON_CLICK, 5F, 2F);
 		    			   player.sendMessage(inv.getItem(0).getItemMeta().getDisplayName()+ChatColor.GRAY+"は戦士系のみ作ることができます.");
 		    			   return;
 		    		   }
 		    		   break;
-		    	   case "魔法武器番号:2":
+*/		    	   case "魔法武器番号:2":
 		    	   case "魔法武器番号:3":
 		    	   case "魔法武器番号:5":
 		    	   case "魔法武器番号:8":
-		    		   if(job != MagicJob.ARCHER){
+/*		    		   if(job != MagicJob.ARCHER){
 		    			   event.setCancelled(true);
 		    			   player.playSound(player.getLocation(),Sound.UI_BUTTON_CLICK, 5F, 2F);
 		    			   player.sendMessage(inv.getItem(0).getItemMeta().getDisplayName()+ChatColor.GRAY+"はアーチャー系のみ作ることができます.");
 		    			   return;
 		    		   }
 		    		   break;
-		    	   case "魔法アイテム番号:3":
+*/		    	   case "魔法アイテム番号:3":
 		    	   case "ROD番号:5-1":
 		    	   case "ROD番号:5-2":
 		    	   case "ROD番号:5-3":
-		    		   if(job != MagicJob.PRIEST){
+/*		    		   if(job != MagicJob.PRIEST){
 		    			   event.setCancelled(true);
 		    			   player.playSound(player.getLocation(),Sound.UI_BUTTON_CLICK, 5F, 2F);
 		    			   player.sendMessage(inv.getItem(0).getItemMeta().getDisplayName()+ChatColor.GRAY+"はプリースト系のみ作ることができます.");
 		    			   return;
 		    		   }
 		    		   break;
-		    	   case "ROD番号:3-1":
+*/		    	   case "ROD番号:3-1":
 		    	   case "ROD番号:3-2":
 		    	   case "ROD番号:3-3":
 		    	   case "ROD番号:7-1":
@@ -77,13 +78,13 @@ public class CraftListener implements Listener{
 		    	   case "ROD番号:7-3":
 		    	   case "ROD番号:7-4":
 		    	   case "ROD番号:12-1":
-		    		   if(job != MagicJob.MAGICIAN){
+/*		    		   if(job != MagicJob.MAGICIAN){
 		    			   event.setCancelled(true);
 		    			   player.playSound(player.getLocation(),Sound.UI_BUTTON_CLICK, 5F, 2F);
 		    			   player.sendMessage(inv.getItem(0).getItemMeta().getDisplayName()+ChatColor.GRAY+"は魔術師系のみ作ることができます.");
 		    			   return;
 		    		   }
-	    	   }
+*/	    	   }
 		       switch(inv.getItem(0).getType()){
 		       		case BOW:
 		       			//魔法武器番号:2-2

@@ -1,13 +1,9 @@
 package mincra.magicrod.listener;
 
-import mincra.magicrod.bar.Bar;
-import mincra.magicrod.database.DatabaseManager;
-import mincra.magicrod.item.MagicItem;
-import mincra.magicrod.main.Magic;
-import mincra.magicrod.rod.*;
-import mincra.magicrod.skill.Skill;
-import mincra.magicrod.util.Util;
-import mincra.magicrod.version.Version;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -27,9 +23,45 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import org.inventivetalent.bossbar.BossBarAPI;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import mincra.magicrod.bar.Bar;
+import mincra.magicrod.database.DatabaseManager;
+import mincra.magicrod.item.MagicItem;
+import mincra.magicrod.main.Magic;
+import mincra.magicrod.rod.AiceRod;
+import mincra.magicrod.rod.AiceRod_3;
+import mincra.magicrod.rod.AiceRod_4;
+import mincra.magicrod.rod.Barrier;
+import mincra.magicrod.rod.Barrier_2;
+import mincra.magicrod.rod.Barrier_3;
+import mincra.magicrod.rod.DestroyRod;
+import mincra.magicrod.rod.DestroyRod_2;
+import mincra.magicrod.rod.DestroyRod_3;
+import mincra.magicrod.rod.DestroyRod_4;
+import mincra.magicrod.rod.DestroyRod_5;
+import mincra.magicrod.rod.ExpRod;
+import mincra.magicrod.rod.ExpRod_2;
+import mincra.magicrod.rod.ExpRod_3;
+import mincra.magicrod.rod.InfernoRod;
+import mincra.magicrod.rod.InfernoRod_2;
+import mincra.magicrod.rod.InfernoRod_3;
+import mincra.magicrod.rod.JampRod;
+import mincra.magicrod.rod.JampRod_2;
+import mincra.magicrod.rod.JampRod_3;
+import mincra.magicrod.rod.Lightning;
+import mincra.magicrod.rod.MineCart_1;
+import mincra.magicrod.rod.MoveRod;
+import mincra.magicrod.rod.MoveRod_2;
+import mincra.magicrod.rod.MoveRod_3;
+import mincra.magicrod.rod.QureRod;
+import mincra.magicrod.rod.QureRod_2;
+import mincra.magicrod.rod.QureRod_3;
+import mincra.magicrod.rod.Spawn_Rod;
+import mincra.magicrod.rod.Spawn_Rod_2;
+import mincra.magicrod.rod.Spawn_Rod_3;
+import mincra.magicrod.rod.Water_Rod;
+import mincra.magicrod.skill.Skill;
+import mincra.magicrod.util.Util;
+import mincra.magicrod.version.Version;
 
 public class MagicItemUse extends Skill implements Listener {
 	public static Magic plugin;
@@ -41,11 +73,11 @@ public class MagicItemUse extends Skill implements Listener {
 	//プレイヤーがプレイヤーをクリックするイベント.
 	@EventHandler
 	public void PlayerInteractEntityEvent(PlayerInteractEntityEvent event){
-		if(event.getPlayer().getItemInHand()!=null&&
-		event.getPlayer().getItemInHand().hasItemMeta()&&
-		event.getPlayer().getItemInHand().getItemMeta().hasLore()){
+		if(event.getPlayer().getInventory().getItemInMainHand()!=null&&
+		event.getPlayer().getInventory().getItemInMainHand().hasItemMeta()&&
+		event.getPlayer().getInventory().getItemInMainHand().getItemMeta().hasLore()){
 			Player player=event.getPlayer();
-			ItemStack item = player.getItemInHand();
+			ItemStack item = player.getInventory().getItemInMainHand();
 			String lore = item.getItemMeta().getLore().get(0);
 			lore = ChatColor.stripColor(lore);
 			int num = lore.indexOf(":");
@@ -59,6 +91,9 @@ public class MagicItemUse extends Skill implements Listener {
 						if(BossBarAPI.hasBar(player)==false&&event.getRightClicked() instanceof Player){
 							Player player2=(Player) event.getRightClicked();
 							String number = lore.substring(lore.indexOf(":")+1);
+							if(player.hasPermission("mincra.admin.debug")){
+								player.sendMessage(ChatColor.GRAY+"デバッグ01");
+							}
 							switch(number){
 								case "4-1":
 									rod401(player,player2,item);
@@ -220,22 +255,36 @@ public class MagicItemUse extends Skill implements Listener {
 					case 24:
 						chargeLv1(player,coolTime);
 				    	break;
+					case 25:
+						invisiblehandsLv1(player,coolTime);
+				    	break;
+					case 26:
+						invisiblehandsLv2(player,coolTime);
+				    	break;
+					case 27:
+						invisiblehandsLv3(player,coolTime);
+				    	break;
 					default:
 						break;
 				}
 			}
 		}else if((event.getAction().equals(Action.RIGHT_CLICK_AIR)||event.getAction().equals(Action.RIGHT_CLICK_BLOCK))){
-			if(event.getItem()!=null&&event.getItem().getItemMeta().hasLore()){
-				String lore = event.getItem().getItemMeta().getLore().get(0);
+			final Player player = event.getPlayer();
+			if(player.getInventory().getItemInMainHand()!=null&&player.getInventory().getItemInMainHand().getItemMeta().hasLore()){
+				if(player.hasPermission("mincra.admin.debug")){
+					player.sendMessage(ChatColor.GRAY+"デバッグ02");
+				}
+				String lore = player.getInventory().getItemInMainHand().getItemMeta().getLore().get(0);
 				lore = ChatColor.stripColor(lore);
-				final Player player = event.getPlayer();
+				if(player.hasPermission("mincra.admin.debug")){
+					player.sendMessage(ChatColor.GRAY+lore);
+				}
 				int num = lore.indexOf(":");
 				if(num!=-1){
-
 				switch(lore.substring(0, num)){
 				case"ROD番号":
 					if(BossBarAPI.hasBar(player)==false){
-						ItemStack item=player.getItemInHand();
+						ItemStack item=player.getInventory().getItemInMainHand();
 						switch(item.getType()){
 							case BLAZE_ROD:
 								switch(lore.substring(lore.indexOf(":")+1)){
@@ -378,7 +427,7 @@ public class MagicItemUse extends Skill implements Listener {
 					break;
 				case"魔法武器番号":
 					if(BossBarAPI.hasBar(player)==false){
-						ItemStack item=player.getItemInHand();
+						ItemStack item=player.getInventory().getItemInMainHand();
 						switch(lore.substring(lore.indexOf(":")+1)){
 							case"6":
 								mechanics(player,item,0.25F);
@@ -412,11 +461,11 @@ public class MagicItemUse extends Skill implements Listener {
 							}
 							break;
 						case "6":
-							if(player.getItemInHand().equals(MagicItem.magicWeed)){
+							if(player.getInventory().getItemInMainHand().equals(MagicItem.magicWeed)){
 								if(player.getLevel() <= 50){
-									player.sendMessage(ChatColor.GREEN+""+ChatColor.BOLD+"魔法草を使用しました.MPが100回復しました.");
+									player.sendMessage(ChatColor.GREEN+""+ChatColor.BOLD+"魔法草を使用しました.MPが1回復しました.");
 									player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BURP, 1, 1);
-									player.giveExp(100);
+									player.giveExpLevels(1);
 								}else{
 									player.sendMessage(ChatColor.GREEN+""+ChatColor.BOLD+"Orrrrrrrr.....ゲホッ...");
 								}
@@ -436,7 +485,6 @@ public class MagicItemUse extends Skill implements Listener {
 				return;
 				//空気を所持時の右クリックイベントは出ないので,左クリックのみ
 			}else  if(event.getPlayer().isSneaking()){
-				final Player player = event.getPlayer();
 				new BukkitRunnable(){
 					@Override
 					public void run() {
@@ -458,7 +506,27 @@ public class MagicItemUse extends Skill implements Listener {
 					}
 				}.runTaskAsynchronously(plugin);
 			}
-			}
+		}else{
+			return;
+		}
+	}
+	private void invisiblehandsLv3(final Player player,float cooltime) {
+		Util.debug(player.getName()+"が見えざる手Lv3を発動");
+		if(cooltime>0)
+			new Bar(player,"["+ChatColor.DARK_GRAY+""+ChatColor.BOLD+"見えざる手Lv3"+ChatColor.RESET+"]クールタイム",cooltime);
+		super.invisiblehands(player,32,16,32,30,200,5);
+	}
+	private void invisiblehandsLv2(final Player player,float cooltime) {
+		Util.debug(player.getName()+"が見えざる手Lv2を発動");
+		if(cooltime>0)
+			new Bar(player,"["+ChatColor.DARK_GRAY+""+ChatColor.BOLD+"見えざる手Lv2"+ChatColor.RESET+"]クールタイム",cooltime);
+		super.invisiblehands(player,16,8,16,15,100,4);
+	}
+	private void invisiblehandsLv1(final Player player,float cooltime) {
+		Util.debug(player.getName()+"が見えざる手Lv1を発動");
+		if(cooltime>0)
+			new Bar(player,"["+ChatColor.DARK_GRAY+""+ChatColor.BOLD+"見えざる手Lv1"+ChatColor.RESET+"]クールタイム",cooltime);
+		super.invisiblehands(player,8,8,8,10,100,2);
 	}
 	private void chargeLv1(final Player player,float cooltime) {
 		Util.debug(player.getName()+"がチャージを発動");
@@ -1961,6 +2029,7 @@ public class MagicItemUse extends Skill implements Listener {
 									for(Entity entity:player.getNearbyEntities(7, 1, 7)){
 										if(entity instanceof Monster){
 											((Damageable) entity).damage(falldistance*fallDamagePer);
+											player.setFallDistance(0);
 											entity.setVelocity(new Vector(entity.getVelocity().getX(),2F,entity.getVelocity().getZ()));
 										}
 									}

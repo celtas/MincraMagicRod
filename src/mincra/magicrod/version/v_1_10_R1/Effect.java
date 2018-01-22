@@ -1,10 +1,7 @@
 package mincra.magicrod.version.v_1_10_R1;
 
-import mincra.magicrod.version.EffectInterface;
-import net.minecraft.server.v1_10_R1.EntityInsentient;
-import net.minecraft.server.v1_10_R1.EnumParticle;
-import net.minecraft.server.v1_10_R1.GenericAttributes;
-import net.minecraft.server.v1_10_R1.PacketPlayOutWorldParticles;
+import java.util.ArrayList;
+
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_10_R1.CraftWorld;
@@ -14,7 +11,11 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
+import mincra.magicrod.version.EffectInterface;
+import net.minecraft.server.v1_10_R1.EntityInsentient;
+import net.minecraft.server.v1_10_R1.EnumParticle;
+import net.minecraft.server.v1_10_R1.GenericAttributes;
+import net.minecraft.server.v1_10_R1.PacketPlayOutWorldParticles;
 
 public class Effect implements EffectInterface {
 	public Effect(){
