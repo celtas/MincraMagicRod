@@ -5,6 +5,7 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.ListenerPriority;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketEvent;
+
 import mincra.magicrod.main.Magic;
 
 public class SoundPacketListener {
@@ -23,12 +24,12 @@ public class SoundPacketListener {
                 	if(event.getPacket().getFloat().read(0) >= 2.0F){
                 		float volume = event.getPacket().getFloat().read(0);
                 		String name = event.getPacket().getStrings().read(0);
-                		if(volume == 2.0F && name.equals("random.explode")){
+                		if(volume == 2.0F && name.equals("entity.generic.explode")){
                 			event.setCancelled(true);
-                		}else if(volume > 8192F && name.equals("ambient.weather.thunder")){
+                		}else if(volume > 8192F && name.equals("entity.lightning.thunder")){
                 			event.setCancelled(true);
                 		}
-                		
+
                 	}
                 }
             }

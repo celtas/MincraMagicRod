@@ -1,11 +1,12 @@
 package mincra.magicrod.version;
 
-import mincra.magicrod.main.Magic;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.LivingEntity;
+
+import mincra.magicrod.main.Magic;
 
 public class Version{
 	// implements EffectInterface
@@ -30,6 +31,9 @@ public class Version{
 				break;
 			case "org.bukkit.craftbukkit.v1_10_R1":
 				effect = (EffectInterface) Class.forName("mincra.magicrod.version.v_1_10_R1.Effect").newInstance();
+				break;
+			case "org.bukkit.craftbukkit.v1_12_R1":
+				effect = (EffectInterface) Class.forName("mincra.magicrod.version.v_1_12_R1.Effect").newInstance();
 				break;
 			default:
 				String name = Bukkit.getServer().getClass().getPackage().getName();

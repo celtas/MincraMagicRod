@@ -91,6 +91,9 @@ public class MagicItemUse extends Skill implements Listener {
 						if(BossBarAPI.hasBar(player)==false&&event.getRightClicked() instanceof Player){
 							Player player2=(Player) event.getRightClicked();
 							String number = lore.substring(lore.indexOf(":")+1);
+							if(player.hasPermission("mincra.admin.debug")){
+								player.sendMessage(ChatColor.GRAY+"デバッグ01");
+							}
 							switch(number){
 								case "4-1":
 									rod401(player,player2,item);
@@ -266,13 +269,18 @@ public class MagicItemUse extends Skill implements Listener {
 				}
 			}
 		}else if((event.getAction().equals(Action.RIGHT_CLICK_AIR)||event.getAction().equals(Action.RIGHT_CLICK_BLOCK))){
-			if(event.getItem()!=null&&event.getItem().getItemMeta().hasLore()){
-				final Player player = event.getPlayer();
+			final Player player = event.getPlayer();
+			if(player.getInventory().getItemInMainHand()!=null&&player.getInventory().getItemInMainHand().getItemMeta().hasLore()){
+				if(player.hasPermission("mincra.admin.debug")){
+					player.sendMessage(ChatColor.GRAY+"デバッグ02");
+				}
 				String lore = player.getInventory().getItemInMainHand().getItemMeta().getLore().get(0);
 				lore = ChatColor.stripColor(lore);
+				if(player.hasPermission("mincra.admin.debug")){
+					player.sendMessage(ChatColor.GRAY+lore);
+				}
 				int num = lore.indexOf(":");
 				if(num!=-1){
-
 				switch(lore.substring(0, num)){
 				case"ROD番号":
 					if(BossBarAPI.hasBar(player)==false){
@@ -477,7 +485,6 @@ public class MagicItemUse extends Skill implements Listener {
 				return;
 				//空気を所持時の右クリックイベントは出ないので,左クリックのみ
 			}else  if(event.getPlayer().isSneaking()){
-				final Player player = event.getPlayer();
 				new BukkitRunnable(){
 					@Override
 					public void run() {
@@ -499,7 +506,9 @@ public class MagicItemUse extends Skill implements Listener {
 					}
 				}.runTaskAsynchronously(plugin);
 			}
-			}
+		}else{
+			return;
+		}
 	}
 	private void invisiblehandsLv3(final Player player,float cooltime) {
 		Util.debug(player.getName()+"が見えざる手Lv3を発動");
