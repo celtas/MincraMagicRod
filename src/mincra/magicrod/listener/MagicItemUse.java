@@ -270,7 +270,7 @@ public class MagicItemUse extends Skill implements Listener {
 			}
 		}else if((event.getAction().equals(Action.RIGHT_CLICK_AIR)||event.getAction().equals(Action.RIGHT_CLICK_BLOCK))){
 			final Player player = event.getPlayer();
-			if(player.getInventory().getItemInMainHand()!=null&&player.getInventory().getItemInMainHand().getItemMeta().hasLore()==true){
+			if(player.getInventory().getItemInMainHand().getType()!=Material.AIR&&player.getInventory().getItemInMainHand().getItemMeta().hasLore()==true){
 				if(player.hasPermission("mincra.admin.debug")){
 					player.sendMessage(ChatColor.GRAY+"デバッグ02");
 				}
