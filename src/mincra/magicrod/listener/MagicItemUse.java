@@ -366,6 +366,9 @@ public class MagicItemUse extends Skill implements Listener {
 								//if(event.getItem().getDurability()!=0){
 								//	player.chat("/mmr ikou");
 								//}
+								if(player.hasPermission("mincra.admin.debug")){
+									player.sendMessage(ChatColor.GRAY+"デバッグ04");
+								}
 								break;
 							case ENCHANTED_BOOK:
 								switch(lore.substring(lore.indexOf(":")+1)){
