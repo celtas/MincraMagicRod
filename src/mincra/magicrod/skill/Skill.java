@@ -165,10 +165,10 @@ public class Skill{
 				Location loc = en.getLocation();
 				Player healPlayer = (Player) en;
 				Version.particle(loc.add(0, 1.7, 0), "HEART", 0.42F,0.42F,0.42F, 1, 15);
-				if((healPlayer.getMaxHealth()-healPlayer.getHealth())>=heal){
+				if((healPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()-healPlayer.getHealth())>=heal){
 					healPlayer.setHealth(healPlayer.getHealth()+heal);
 				}else{
-					healPlayer.setHealth(healPlayer.getMaxHealth());
+					healPlayer.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue());
 				}
 				cnt++;
 				if(cnt>=limit){
@@ -177,10 +177,10 @@ public class Skill{
 			}
 		}
     	Version.particle(player.getLocation().add(0, 1.7, 0), "HEART", 0.42F,0.42F,0.42F, 1, 15);
-    	if((player.getMaxHealth()-player.getHealth())>=heal){
+    	if((player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()-player.getHealth())>=heal){
 			player.setHealth(player.getHealth()+heal);
 		}else{
-			player.setHealth(player.getMaxHealth());
+			player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue());
 		}
 	}
 
