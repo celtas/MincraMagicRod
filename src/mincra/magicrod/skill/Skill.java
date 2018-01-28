@@ -9,6 +9,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -48,7 +49,7 @@ public class Skill{
 		}
 	}
 	protected void boost(final Player player){
-		player.setMaxHealth(60);
+		player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(60);
 		player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1F, 1F);
 		final Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		boostPlayers.put(player.getName(), timestamp);
@@ -58,7 +59,7 @@ public class Skill{
 				if(Skill.boostPlayers.containsKey(player.getName())){
 					if(timestamp.equals(Skill.boostPlayers.get(player.getName()))){
 						Skill.boostPlayers.remove(player.getName());
-						player.setMaxHealth(40);
+						player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(40);
 					}
 				}
 			}
