@@ -6,6 +6,7 @@ import java.util.Random;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -196,7 +197,7 @@ public class WeaponListener implements Listener{
 	    		player.setLevel(player.getLevel()-hlv);
 		    	Damageable d = (Damageable) player;
 		    	int health=(int) (d.getHealth()+damage*1.25);
-		    	if(health>d.getMaxHealth())health=(int) d.getMaxHealth();
+		    	if(health>player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue())health=(int) player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
 		    	player.setHealth(health);
 		    	Version.playeffect(player.getLocation(),"VILLAGER_HAPPY");
 		    	Version.playSound(player.getLocation(),Sound.ENTITY_ZOMBIE_INFECT, 3F, 1F);

@@ -9,6 +9,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -48,7 +49,7 @@ public class Skill{
 		}
 	}
 	protected void boost(final Player player){
-		player.setMaxHealth(60);
+		player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(60);
 		player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1F, 1F);
 		final Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		boostPlayers.put(player.getName(), timestamp);
@@ -58,7 +59,7 @@ public class Skill{
 				if(Skill.boostPlayers.containsKey(player.getName())){
 					if(timestamp.equals(Skill.boostPlayers.get(player.getName()))){
 						Skill.boostPlayers.remove(player.getName());
-						player.setMaxHealth(40);
+						player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(40);
 					}
 				}
 			}
@@ -164,10 +165,10 @@ public class Skill{
 				Location loc = en.getLocation();
 				Player healPlayer = (Player) en;
 				Version.particle(loc.add(0, 1.7, 0), "HEART", 0.42F,0.42F,0.42F, 1, 15);
-				if((healPlayer.getMaxHealth()-healPlayer.getHealth())>=heal){
+				if((healPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()-healPlayer.getHealth())>=heal){
 					healPlayer.setHealth(healPlayer.getHealth()+heal);
 				}else{
-					healPlayer.setHealth(healPlayer.getMaxHealth());
+					healPlayer.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue());
 				}
 				cnt++;
 				if(cnt>=limit){
@@ -176,10 +177,10 @@ public class Skill{
 			}
 		}
     	Version.particle(player.getLocation().add(0, 1.7, 0), "HEART", 0.42F,0.42F,0.42F, 1, 15);
-    	if((player.getMaxHealth()-player.getHealth())>=heal){
+    	if((player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()-player.getHealth())>=heal){
 			player.setHealth(player.getHealth()+heal);
 		}else{
-			player.setHealth(player.getMaxHealth());
+			player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue());
 		}
 	}
 

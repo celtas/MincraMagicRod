@@ -1,11 +1,10 @@
 package mincra.magicrod.listener;
 
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerAchievementAwardedEvent;
+//import org.bukkit.event.player.PlayerAchievementAwardedEvent;
 
 public class PlayerAchievementAwardedListener implements Listener {
-	
+
 	/*
 	ACQUIRE_IRON			金属を手に入れる		鉄鉱石を精錬し、鉄を手に入れる
 	BAKE_CAKE				the cake is a lie	小麦に砂糖、牛乳、それから卵!
@@ -24,7 +23,7 @@ public class PlayerAchievementAwardedListener implements Listener {
 	END_PORTAL				おしまい?				ジ・エンドを見つける
 	EXPLORE_ALL_BIOMES		冒険の時間				全てのバイオームを発見する
 	FLY_PIG					ブタさんの飛ぶ頃に		ブタに乗って崖から落ちる
-	FULL_BEACON				ビーコン使い			最大状態のビーコンを組み立てる  
+	FULL_BEACON				ビーコン使い			最大状態のビーコンを組み立てる
 	GET_BLAZE_ROD			炎の中へ				ブレイズロッドを手に入れる
 	GET_DIAMONDS			ダイヤモンド!			鉄の道具を使ってダイヤモンドを手に入れる
 	GHAST_RETURN			宛先不明				火の玉をガストに打ち返す
@@ -41,8 +40,8 @@ public class PlayerAchievementAwardedListener implements Listener {
 	SPAWN_WITHER			はじまり?				ウィザーを出現させる
 	THE_END					おしまい。				エンダードラゴンを倒す
 	*/
-	@EventHandler
-	public void onPlayerAchievementAwarded(PlayerAchievementAwardedEvent e){
-		
-	}
+//	@EventHandler
+//	public void onPlayerAchievementAwarded(PlayerAchievementAwardedEvent e){
+//
+//	}
 }

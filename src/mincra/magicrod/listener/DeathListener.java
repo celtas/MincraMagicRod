@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -41,7 +42,7 @@ public class DeathListener implements Listener {
             if((player.getHealth()-e.getDamage()) <= 0) {
 	            if(resurrectionPlayers.containsKey(player.getName())){
 					e.setCancelled(true);
-					player.setHealth(player.getMaxHealth()/2);
+					player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()/2);
 					player.setNoDamageTicks(100);
 					Version.playeffect(player.getLocation(), "FIREWORKS_SPARK");
 					Version.effect.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 1F, 1F);
@@ -54,7 +55,7 @@ public class DeathListener implements Listener {
 	    					pd.setAmount(1);
 	    					inv.removeItem(pd);
 	                        e.setCancelled(true);
-	                        player.setHealth(player.getMaxHealth());
+	                        player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
 	                        Version.playeffect(player.getLocation(), "FIREWORKS_SPARK");
 	                        player.setNoDamageTicks(100);
 	                        Version.effect.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 1F, 1F);
@@ -85,7 +86,7 @@ public class DeathListener implements Listener {
                 if((player.getHealth()-e.getDamage()) <= 0) {
                 	if(resurrectionPlayers.containsKey(player.getName())){
     					e.setCancelled(true);
-    					player.setHealth(player.getMaxHealth()/2);
+    					player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()/2);
     					player.setNoDamageTicks(100);
     					Version.playeffect(player.getLocation(), "FIREWORKS_SPARK");
     					Version.effect.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 1F, 1F);
@@ -99,7 +100,7 @@ public class DeathListener implements Listener {
 	    					pd.setAmount(1);
 	    					inv.removeItem(pd);
 	                        e.setCancelled(true);
-	                        player.setHealth(player.getMaxHealth());
+	                        player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
 	                        Version.playeffect(player.getLocation(), "FIREWORKS_SPARK");
 	                        player.setNoDamageTicks(100);
 	                        Version.effect.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 1F, 1F);
@@ -126,7 +127,7 @@ public class DeathListener implements Listener {
     					pd.setAmount(1);
     					inv.removeItem(pd);
                         e.setCancelled(true);
-                        player.setHealth(player.getMaxHealth());
+                        player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
                         Version.playeffect(player.getLocation(), "FIREWORKS_SPARK");
                         player.setNoDamageTicks(100);
                         Version.effect.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_INFECT, 1F, 1F);

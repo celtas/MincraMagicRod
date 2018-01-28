@@ -1,6 +1,7 @@
 package mincra.magicrod.rod;
 
-import mincra.magicrod.version.Version;
+import java.util.List;
+
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Minecart;
 import org.bukkit.entity.Player;
@@ -8,7 +9,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import java.util.List;
+import mincra.magicrod.version.Version;
 
 public class MineCart_1 extends BukkitRunnable{
 Player player;
@@ -23,7 +24,7 @@ Plugin plugin;
 		List<Entity> li = player.getNearbyEntities(2, 2, 2);
 		for(Entity en:li){
 			if(en instanceof Minecart){
-				if(en.getPassenger().equals(player)){
+				if(en.getPassengers().equals(player)){
 					final Minecart minecart = (Minecart) en;
 					final double maxspeed =minecart.getMaxSpeed();
 					final Vector maxvector=minecart.getDerailedVelocityMod();
@@ -49,6 +50,6 @@ Plugin plugin;
 			}
 		}
     	this.cancel();
-	}	
+	}
 
 }

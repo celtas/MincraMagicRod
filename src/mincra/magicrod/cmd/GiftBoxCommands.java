@@ -1,8 +1,5 @@
 package mincra.magicrod.cmd;
 
-import mincra.magicrod.api.MagicApi;
-import mincra.magicrod.database.DatabaseManager;
-import mincra.magicrod.util.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -11,6 +8,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+
+import mincra.magicrod.api.MagicApi;
+import mincra.magicrod.database.DatabaseManager;
+import mincra.magicrod.util.Util;
 
 public class GiftBoxCommands implements CommandExecutor {
 	//1番目のパラメータは所有者を現す。nullを指定することによりだれでも利用することが可能.
@@ -31,12 +32,11 @@ public class GiftBoxCommands implements CommandExecutor {
 				if(!player.hasPermission("MincraMagicRod.Admin")){
 					player.sendMessage(ChatColor.GRAY+"権限を持っていません.");
 				}
-				@SuppressWarnings("deprecation")
 				Player player2 = Bukkit.getServer().getPlayer(args[0]);
 				if(player2 == null){
 					player.sendMessage(ChatColor.GRAY+"プレイヤーが存在しません.");
 				}
-				
+
 				if(args.length==3){
 					if(args[1].equalsIgnoreCase("add")){
 						ItemStack material = MagicApi.getMaterial(Integer.valueOf(args[2]));
@@ -60,9 +60,9 @@ public class GiftBoxCommands implements CommandExecutor {
 	}
 	private void showGiftBox(Player player) {
 		int user_id = DatabaseManager.getUserId(player.getUniqueId());
-		if(user_id == -1) 
+		if(user_id == -1)
 			return;
-		
+
 		Inventory inv = DatabaseManager.getGiftBoxInventory(user_id);
 		if(inv!=null){
 			player.openInventory(inv);
