@@ -767,7 +767,6 @@ public class DatabaseManager extends MagicApi{
 	 * Converts an Inventory into a serialized inventoryString for saving
 	 * https://github.com/MrTwiggy/MachineFactory/blob/master/src/com/github/MrTwiggy/MachineFactory/Utility/InventoryStringDeSerializer.java
 	 */
-    @SuppressWarnings("deprecation")
 	public static String InventoryToString (Inventory invInventory)
     {
         String serialization = invInventory.getSize() + ";";
@@ -832,7 +831,7 @@ public class DatabaseManager extends MagicApi{
     /**
      * Converts a serialized inventoryString into an Inventory object
      */
-    @SuppressWarnings("deprecation")
+
 	public static Inventory StringToInventory (String invName,int num,String invString)
     {
         String[] serializedBlocks = invString.split(";");
