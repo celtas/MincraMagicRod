@@ -1,9 +1,17 @@
 package mincra.magicrod.database;
 
-import mincra.magicrod.api.MagicApi;
-import mincra.magicrod.item.MagicMaterial;
-import mincra.magicrod.main.Magic;
-import mincra.magicrod.util.Util;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Random;
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -14,9 +22,10 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.sql.*;
-import java.util.*;
-import java.util.Map.Entry;
+import mincra.magicrod.api.MagicApi;
+import mincra.magicrod.item.MagicMaterial;
+import mincra.magicrod.main.Magic;
+import mincra.magicrod.util.Util;
 
 public class DatabaseManager extends MagicApi{
 	final public static String skillInventoryTitle = ChatColor.DARK_AQUA+""+ChatColor.BOLD+"スキル編集(Eキーで閉じる)";
@@ -99,7 +108,6 @@ public class DatabaseManager extends MagicApi{
 		return null;
 	}
 
-	@SuppressWarnings("deprecation")
 	public static int getUserId(String name){
 		Connection conn = null;
 		Statement stats = null;
