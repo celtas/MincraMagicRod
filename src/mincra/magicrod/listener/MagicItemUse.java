@@ -411,9 +411,9 @@ public class MagicItemUse extends Skill implements Listener {
 									default:
 										break;
 								}
-								if(event.getItem().getDurability()!=0){
-									player.chat("/mmr ikou");
-								}
+								//if(event.getItem().getDurability()!=0){
+								//	player.chat("/mmr ikou");
+								//}
 								break;
 							case DIAMOND_PICKAXE:
 								switch(lore.substring(lore.indexOf(":")+1)){
