@@ -362,9 +362,10 @@ public class MagicItemUse extends Skill implements Listener {
 									default:
 										break;
 								}
-								if(event.getItem().getDurability()!=0){
-									player.chat("/mmr ikou");
-								}
+								//よくわからないのでコメントアウト
+								//if(event.getItem().getDurability()!=0){
+								//	player.chat("/mmr ikou");
+								//}
 								break;
 							case ENCHANTED_BOOK:
 								switch(lore.substring(lore.indexOf(":")+1)){
