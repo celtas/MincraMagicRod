@@ -1,15 +1,14 @@
 package mincra.magicrod.listener;
 
-import mincra.magicrod.ai.MonsterAI;
-import mincra.magicrod.main.Magic;
-import mincra.magicrod.version.Version;
+import java.util.Random;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.enchantments.EnchantmentWrapper;
 import org.bukkit.entity.Creeper;
-import org.bukkit.entity.Guardian;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
@@ -20,7 +19,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 
-import java.util.Random;
+import mincra.magicrod.ai.MonsterAI;
+import mincra.magicrod.main.Magic;
+import mincra.magicrod.version.Version;
 
 public class SpawnListener extends MonsterAI implements Listener{
 	private Magic plugin;
@@ -94,14 +95,14 @@ public class SpawnListener extends MonsterAI implements Listener{
 			float hash = (float) ((random.nextInt(10000)+1)*0.01);
 			switch(event.getEntityType()){
 				case CREEPER:
-					mob.setMaxHealth(40);
+					mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(40);
 					mob.setHealth(40);
 					((Creeper)mob).setPowered(true);
 					Version.setStats(mob,0.24D,30D);
 					break;
 				case ZOMBIE:
 					if(hash<50){
-						mob.setMaxHealth(75);
+						mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(75);
 						mob.setHealth(75);
 						Version.setStats(mob,0.360D,10D);
 					}else{
@@ -111,7 +112,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 							mob.getEquipment().setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
 							mob.getEquipment().setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
 							mob.getEquipment().setBoots(new ItemStack(Material.CHAINMAIL_BOOTS));
-							mob.setMaxHealth(70);
+							mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(70);
 							mob.setHealth(70);
 							mob.setCustomName("Chain Zombie");
 							mob.getEquipment().setItemInMainHand(new ItemStack(Material.IRON_SWORD));
@@ -121,7 +122,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 							mob.getEquipment().setChestplate(new ItemStack(Material.GOLD_CHESTPLATE));
 							mob.getEquipment().setLeggings(new ItemStack(Material.GOLD_LEGGINGS));
 							mob.getEquipment().setBoots(new ItemStack(Material.GOLD_BOOTS));
-							mob.setMaxHealth(70);
+							mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(70);
 							mob.setHealth(70);
 							Version.setStats(mob,0.320D);
 							mob.setCustomName("Gold Zombie");
@@ -138,7 +139,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 							if(((Zombie)mob).isBaby()) ((Zombie)mob).setBaby(false);
 							mob.getEquipment().setBoots(new ItemStack(Material.LEATHER_BOOTS));
 							Version.setStats(mob,0.420D);
-							mob.setMaxHealth(140);
+							mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(140);
 							mob.setHealth(140);
 							mob.setCustomName(ChatColor.WHITE+""+ChatColor.BOLD+"Fast Zombie");
 							mob.getEquipment().setItemInMainHand(new ItemStack(Material.BLAZE_ROD));
@@ -150,7 +151,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 							mob.getEquipment().setLeggings(greenleggings);
 							mob.getEquipment().setBoots(greenboots);
 							Version.setStats(mob,0.300D);
-							mob.setMaxHealth(220);
+							mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(220);
 							mob.setHealth(220);
 							mob.setCustomName(ChatColor.GREEN+""+ChatColor.BOLD+"Heal Zombie");
 							mob.getEquipment().setItemInMainHand(new ItemStack(Material.BLAZE_ROD));
@@ -163,7 +164,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 				case SKELETON:
 					if(hash<55){
 						Version.setStats(mob,0.360D);
-						mob.setMaxHealth(70);
+						mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(70);
 						mob.setHealth(70);
 					}else if(hash<88){
 						mob.getEquipment().setHelmet(new ItemStack(Material.CHAINMAIL_HELMET));
@@ -174,7 +175,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 						ItemStack weapon = new ItemStack(Material.BOW);
 						weapon.addEnchantment(new EnchantmentWrapper(48), 2);
 						mob.getEquipment().setItemInMainHand(weapon);
-						mob.setMaxHealth(70);
+						mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(70);
 						mob.setHealth(70);
 						Version.setStats(mob,0.340D);
 					}else if(hash<95){
@@ -186,7 +187,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 						ItemStack weapon = new ItemStack(Material.BOW);
 						weapon.addEnchantment(new EnchantmentWrapper(48), 3);
 						mob.getEquipment().setItemInMainHand(weapon);
-						mob.setMaxHealth(70);
+						mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(70);
 						mob.setHealth(70);
 						Version.setStats(mob,0.320D);
 					}else if(hash<98.5){
@@ -198,7 +199,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 						ItemStack weapon = new ItemStack(Material.BOW);
 						weapon.addEnchantment(new EnchantmentWrapper(48), 5);
 						mob.getEquipment().setItemInMainHand(weapon);
-						mob.setMaxHealth(70);
+						mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(70);
 						mob.setHealth(70);
 						Version.setStats(mob,0.300D);
 					}else if(hash<99){
@@ -210,7 +211,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 						ItemStack weapon = new ItemStack(Material.BOW);
 						weapon.addUnsafeEnchantment(new EnchantmentWrapper(48), 5);
 						mob.getEquipment().setItemInMainHand(weapon);
-						mob.setMaxHealth(300);
+						mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(300);
 						mob.setHealth(300);
 						Version.setStats(mob,0.200D);
 						blizard(mob);
@@ -224,7 +225,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 						ItemStack weapon = new ItemStack(Material.BOW);
 						weapon.addUnsafeEnchantment(new EnchantmentWrapper(48), 5);
 						mob.getEquipment().setItemInMainHand(weapon);
-						mob.setMaxHealth(300);
+						mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(300);
 						mob.setHealth(300);
 						Version.setStats(mob,0.200D);
 						fire(mob);
@@ -236,7 +237,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 						mob.getEquipment().setBoots(greenboots);
 						mob.setCustomName(ChatColor.GREEN+""+ChatColor.BOLD+"Heal Skeleton");
 						mob.getEquipment().setItemInMainHand(new ItemStack(Material.BLAZE_ROD));
-						mob.setMaxHealth(400);
+						mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(400);
 						mob.setHealth(400);
 						Version.setStats(mob,0.268D);
 						mob.setMetadata("MagicType", new FixedMetadataValue(plugin, "HealSkeleton"));
@@ -245,12 +246,12 @@ public class SpawnListener extends MonsterAI implements Listener{
 					}
 					break;
 				case SPIDER:
-					mob.setMaxHealth(70);
+					mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(70);
 					mob.setHealth(70);
 					Version.setStats(mob,0.368D,10D);
 					break;
 				case CAVE_SPIDER:
-					mob.setMaxHealth(70);
+					mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(70);
 					mob.setHealth(70);
 					break;
 				case BAT:
@@ -262,11 +263,11 @@ public class SpawnListener extends MonsterAI implements Listener{
 				case COW:
 					break;
 				case ENDERMITE:
-					mob.setMaxHealth(35);
+					mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(35);
 					mob.setHealth(35);
 					break;
 				case ENDERMAN:
-					mob.setMaxHealth(120);
+					mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(120);
 					mob.setHealth(120);
 					break;
 				case GHAST:
@@ -274,13 +275,12 @@ public class SpawnListener extends MonsterAI implements Listener{
 				case GIANT:
 					break;
 				case GUARDIAN:
-					if(((Guardian) mob).isElder()){
-						mob.setMaxHealth(120);
-						mob.setHealth(120);
-					}else{
-						mob.setMaxHealth(60);
-						mob.setHealth(60);
-					}
+					mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(60);
+					mob.setHealth(60);
+					break;
+				case ELDER_GUARDIAN:
+					mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(120);
+					mob.setHealth(120);
 					break;
 				case HORSE:
 					break;
@@ -291,7 +291,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 				case PIG:
 					break;
 				case PIG_ZOMBIE:
-					mob.setMaxHealth(30);
+					mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(30);
 					mob.setHealth(30);
 					break;
 				case RABBIT:
@@ -301,13 +301,13 @@ public class SpawnListener extends MonsterAI implements Listener{
 				case SILVERFISH:
 					break;
 				case SLIME:
-					mob.setMaxHealth(40);
+					mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(40);
 					mob.setHealth(40);
 					break;
 				case SQUID:
 					break;
 				case WITCH:
-					mob.setMaxHealth(125);
+					mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(125);
 					mob.setHealth(125);
 					break;
 				case WITHER:
@@ -321,7 +321,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 			LivingEntity mob=event.getEntity();
 			switch(event.getEntityType()){
 				case ENDERMAN:
-					mob.setMaxHealth(100);
+					mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(100);
 					mob.setHealth(100);
 					break;
 				default:
@@ -334,7 +334,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 				case PIG_ZOMBIE:
 					if(hash<85){
 						Version.setStats(mob,0.260D);
-						mob.setMaxHealth(50);
+						mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(50);
 						mob.setHealth(50);
 						ItemStack weapon = new ItemStack(Material.GOLD_SWORD);
 						weapon.addEnchantment(new EnchantmentWrapper(16), 1);
@@ -348,7 +348,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 						ItemStack weapon = new ItemStack(Material.GOLD_SWORD);
 						weapon.addEnchantment(new EnchantmentWrapper(16), 2);
 						mob.getEquipment().setItemInMainHand(weapon);
-						mob.setMaxHealth(80);
+						mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(80);
 						mob.setHealth(80);
 						Version.setStats(mob,0.270D);
 					}else{
@@ -358,7 +358,7 @@ public class SpawnListener extends MonsterAI implements Listener{
 						mob.getEquipment().setBoots(greenboots);
 						mob.setCustomName(ChatColor.GREEN+""+ChatColor.BOLD+"Heal Pigman");
 						mob.getEquipment().setItemInMainHand(new ItemStack(Material.BLAZE_ROD));
-						mob.setMaxHealth(200);
+						mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(200);
 						mob.setHealth(200);
 						Version.setStats(mob,0.230D);
 						mob.setMetadata("MagicType", new FixedMetadataValue(plugin, "HealPigman"));
@@ -367,15 +367,15 @@ public class SpawnListener extends MonsterAI implements Listener{
 					}
 					break;
 				case BLAZE:
-					mob.setMaxHealth(50);
+					mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(50);
 					mob.setHealth(50);
 					break;
 				case SKELETON:
-					mob.setMaxHealth(100);
+					mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(100);
 					mob.setHealth(100);
 					break;
 				case GHAST:
-					mob.setMaxHealth(100);
+					mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(100);
 					mob.setHealth(100);
 					break;
 				default:

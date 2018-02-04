@@ -1,17 +1,23 @@
 package mincra.magicrod.ai;
 
-import mincra.magicrod.main.Magic;
-import mincra.magicrod.version.Version;
+import java.util.ArrayList;
+
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Sound;
-import org.bukkit.entity.*;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Monster;
+import org.bukkit.entity.Player;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
+import mincra.magicrod.main.Magic;
+import mincra.magicrod.version.Version;
 
 public class MonsterAI{
 	private Magic plugin;
@@ -102,10 +108,10 @@ public class MonsterAI{
 							if(en instanceof Monster){
 								Location loc = en.getLocation();
 								Version.particle(loc.add(0, 1.7, 0), "HEART", 0.42F,0.42F,0.42F, 1, 10);
-								if((((Monster)en).getMaxHealth()-((Monster) en).getHealth())>=40){
+								if((((Monster)en).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()-((Monster) en).getHealth())>=40){
 									((Monster) en).setHealth(((Monster) en).getHealth()+40);
 								}else{
-									((Monster) en).setHealth(((Monster) en).getMaxHealth());
+									((Monster) en).setHealth(((Monster) en).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
 								}
 								cnt++;
 								if(cnt>=12){

@@ -3,6 +3,7 @@ package mincra.magicrod.listener;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,7 +25,7 @@ public class JoinListener extends DatabaseManager implements Listener{
 	@EventHandler
 	public void onPlayerJoinEvent(final PlayerJoinEvent e){
 		final Player player = e.getPlayer();
-		player.setMaxHealth(40);
+		player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(40);
 		final int user_id = DatabaseManager.getUserId(e.getPlayer().getUniqueId());
 		if(user_id != -1){
 			new BukkitRunnable(){

@@ -301,7 +301,6 @@ public class MincraCommands extends MagicApi implements CommandExecutor {
 	private void getMaterial(Player player,String arg){
 		player.getInventory().addItem(MagicApi.getMaterial(Integer.valueOf(arg)));
 	}
-	@SuppressWarnings("deprecation")
 	private boolean giveMaterial(CommandSender sender, String[] args) {
 		if(!(sender.hasPermission("mincra.item.give")||sender.hasPermission("mincra.item.admin"))){
 			sender.sendMessage(ChatColor.GRAY+"権限を持っていません.");
